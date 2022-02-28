@@ -1,0 +1,19 @@
+#title {
+    font-size: 50px;
+}
+
+#navbar {
+    font-family: 'Outfit', sans-serif;
+    font-size: 30px;
+    margin: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#home_button {
+    margin-right: 150px;
+}
+
+.nav_button {
+    float: right;
+}
