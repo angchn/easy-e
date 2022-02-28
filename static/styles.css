@@ -1,19 +1,33 @@
+body {
+    background-color: #f6f5f0;
+}
+
 #title {
     font-size: 50px;
 }
 
 #navbar {
     font-family: 'Outfit', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
+    color: #778da9;
     margin: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 150px;
+    margin-right: 150px;
 }
 
 #home_button {
     margin-right: 150px;
+    font-size: 2em;
+    color: #0d1b2a;
+    text-decoration: none;
+}
+
+#home_button:visited {
+    color: #0d1b2a;
 }
 
 .nav_button {
+    margin-left: 50px;
+    margin-top: 15px;
     float: right;
 }
