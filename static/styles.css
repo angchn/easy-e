@@ -2,10 +2,6 @@ body {
     background-color: #f6f5f0;
 }
 
-#title {
-    font-size: 50px;
-}
-
 #navbar {
     font-family: 'Outfit', sans-serif;
     font-size: 20px;
@@ -20,6 +16,7 @@ body {
     font-size: 2em;
     color: #0d1b2a;
     text-decoration: none;
+    user-select: none;
 }
 
 #home_button:visited {
@@ -30,4 +27,38 @@ body {
     margin-left: 50px;
     margin-top: 15px;
     float: right;
+}
+
+.nav_button:hover{
+    color: #0d1b2a;
+    cursor: pointer;
+}
+
+#header{
+    text-align: center;
+    padding-top: 150px;
+}
+
+#subtitle {
+    color: #778da9;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    font-size: 25px;
+    user-select: none;
+}
+
+#title {
+    font-size: 100px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    margin-top: -50px;
+    user-select: none;
+}
+
+#hidden_text{
+    display: none;
+}
+
+#title:hover #hidden_text{
+    display: block;
 }
