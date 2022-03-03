@@ -27,6 +27,7 @@ body {
     margin-left: 50px;
     margin-top: 15px;
     float: right;
+    text-decoration: none;
 }
 
 .nav_button:hover{
@@ -34,9 +35,13 @@ body {
     cursor: pointer;
 }
 
+.nav_button:visited {
+    color: #778da9;
+}
+
 #header{
     text-align: center;
-    padding-top: 150px;
+    padding-top: 175px;
 }
 
 #subtitle {
@@ -53,12 +58,4 @@ body {
     font-weight: 300;
     margin-top: -50px;
     user-select: none;
-}
-
-#hidden_text{
-    display: none;
-}
-
-#title:hover #hidden_text{
-    display: block;
 }

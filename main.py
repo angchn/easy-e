@@ -6,6 +6,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///student.db"
 db = SQLAlchemy(app)
 
 
+
 @app.route("/")
 def home():
     return render_template ("home.html", page_title="Home")
