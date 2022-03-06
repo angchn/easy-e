@@ -39,6 +39,11 @@ body {
     color: #778da9;
 }
 
+.nav_button:visited:hover {
+    color: #0d1b2a;
+    cursor: pointer;
+}
+
 #header{
     text-align: center;
     padding-top: 175px;
@@ -59,3 +64,4 @@ body {
     margin-top: -50px;
     user-select: none;
 }
+
