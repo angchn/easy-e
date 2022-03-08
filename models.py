@@ -9,10 +9,11 @@ class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
     paper_file = db.Column(db.Text())
+    name = db.Column(db.Text())
     subjects = db.relationship('Subjects', secondary=PaperSubject, backref='papers')
 
     def __repr__(self):
-        return f'{self.paper_file} PAPER' 
+        return self.paper_file 
 
 
 class Subjects(db.Model):

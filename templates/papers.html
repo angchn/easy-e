@@ -2,5 +2,14 @@
 {% block title %} past papers {% endblock %}
 
 {% block content %}
-{{papers}}
+
+{% for paper in papers %}
+
+<h1 class="subject_title">{{paper.subjects[0]}}</h1>
+<ul>
+    <a href="/static/past_paper_files/{{paper.paper_file}}" target="_blank">{{paper.name}}</a>
+</ul>
+
+{% endfor %}
+
 {% endblock %}

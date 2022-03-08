@@ -65,3 +65,6 @@ body {
     user-select: none;
 }
 
+.subject_title {
+    font-family: 'Outfit', sans-serif;
+}
