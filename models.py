@@ -1,20 +1,16 @@
 from main import db
 
-PaperSubject = db.Table('paper_subject',
-    db.Column('paper_id', db.Integer, db.ForeignKey('past_papers.id')),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'))
-)
-
 class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
     paper_file = db.Column(db.Text())
     name = db.Column(db.Text())
-    subjects = db.relationship('Subjects', secondary=PaperSubject, backref='papers')
+    subject = db.Column(db.Integer, db.ForeignKey('subjects.id'))
+
+    subjects = db.relationship('Subjects', backref='papers', lazy=True)
 
     def __repr__(self):
         return self.paper_file 
-
 
 class Subjects(db.Model):
     __tablename__ = "subjects"
