@@ -115,6 +115,70 @@ body {
     margin-bottom: 3px;
 }
 
+.subject_header {
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 20px;
+}
+
 .subject_title {
     font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+}
+
+.subject_subtitle {
+    color: #778da9;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    margin-top: -40px;
+    font-size: 25px;
+}
+
+.page {
+    width: 70%;
+    margin: auto;
+}
+
+.level {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.paper_link {
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.standard {
+    margin: auto;
+}
+
+.standard_box {
+    width: 30%;
+    padding: 10px;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    display: grid;
+    float: right;
+    background-color: white;
+}
+
+.standard_box:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.standard_title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+.standard_description {
+    font-family: 'Inter', sans-serif;
 }

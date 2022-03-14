@@ -24,9 +24,6 @@ def english():
 
 
 
-
-
-
 @app.route("/past_papers_math")
 def math():
     return render_template("math.html", page_title="Math_Past_Papers")
