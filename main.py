@@ -19,7 +19,29 @@ def papers():
 
 @app.route("/past_papers_english")
 def english():
-    return render_template ("english.html", page_title="English_Past_Papers")
+    epapers = models.Paper.query.filter_by(subject=1)
+    return render_template ("english.html", page_title="English_Past_Papers", epapers=epapers)
+
+
+
+
+
+
+@app.route("/past_papers_math")
+def math():
+    return render_template("math.html", page_title="Math_Past_Papers")
+
+@app.route("/past_papers_physics")
+def physics():
+    return render_template("physics.html", page_title="Physics_Past_Papers")
+
+@app.route("/past_papers_chemistry")
+def chemistry():
+    return render_template("chemistry.html", page_title="Chemistry_Past_Papers")
+
+@app.route ("/past_papers_biology")
+def biology():
+    return render_template("biology.html", page_title="Biology_Past_Papers")
 
 if __name__ == "__main__":
     app.run(debug=True)

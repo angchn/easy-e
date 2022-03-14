@@ -8,9 +8,13 @@
     <a class="nav_button">contact</a>
     <a class="nav_button">about</a>
     <div id="paper_dropdown">
-        <button class="dropdown_button" href="{{url_for('papers')}}">past papers</button>
+        <button class="dropdown_button" href="{{url_for('papers')}}">past papers<i class="arrow down"></i></button>
         <div id="dropdown_content">
             <a href="{{url_for('english')}}">english</a>
+            <a href="{{url_for('math')}}">math</a>
+            <a href="{{url_for('physics')}}">physics</a>
+            <a href="{{url_for('chemistry')}}">chemistry</a>
+            <a href="{{url_for('biology')}}">biology</a>
         </div>
     </div>
 </nav>

@@ -3,6 +3,16 @@
 
 {% block content %}
 
+{% for epaper in epapers %}
+
+<h1>{{epaper}}</h1>
+
+<ul>
+    <a href="/static/past_paper_files/{{epaper.paper_file}}" target="_blank">{{epaper.name}}</a>
+</ul>
+
+{% endfor %}
+
 <h1>hoi</h1>
 
 {% endblock %}
