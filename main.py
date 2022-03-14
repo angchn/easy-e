@@ -17,5 +17,9 @@ def papers():
     papers = models.Paper.query.all()
     return render_template ("papers.html", page_title="Past_Papers", papers=papers)
 
+@app.route("/past_papers_english")
+def english():
+    return render_template ("english.html", page_title="English_Past_Papers")
+
 if __name__ == "__main__":
     app.run(debug=True)

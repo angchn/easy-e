@@ -7,5 +7,10 @@
     <a class="nav_button">login</a>
     <a class="nav_button">contact</a>
     <a class="nav_button">about</a>
-    <a class="nav_button" href="{{url_for('papers')}}">past papers</a>
+    <div id="paper_dropdown">
+        <button class="dropdown_button" href="{{url_for('papers')}}">past papers</button>
+        <div id="dropdown_content">
+            <a href="{{url_for('english')}}">english</a>
+        </div>
+    </div>
 </nav>
