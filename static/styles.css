@@ -151,6 +151,8 @@ body {
     font-family: 'Inter', sans-serif;
     text-decoration: none;
     font-weight: bold;
+    width: 90%;
+    margin: 0;
 }
 
 .standard {
@@ -165,6 +167,8 @@ body {
     display: grid;
     float: right;
     background-color: white;
+    height: fit-content;
+    border-radius: 25px;
 }
 
 .standard_box:after {
@@ -181,4 +185,10 @@ body {
 
 .standard_description {
     font-family: 'Inter', sans-serif;
+    color: #778da9;
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 50px;
 }
