@@ -6,6 +6,7 @@ class Paper(db.Model):
     paper_file = db.Column(db.Text())
     name = db.Column(db.Text())
     subject = db.Column(db.Integer, db.ForeignKey('subjects.id'))
+    standard = db.Column(db.Text())
 
     subjects = db.relationship('Subjects', backref='papers', lazy=True)
 
