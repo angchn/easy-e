@@ -153,6 +153,18 @@ body {
     font-weight: bold;
     width: 90%;
     margin: 0;
+    color: #778da9;
+    transition-duration: 0.1s;
+}
+
+.paper_link:visited {color: #778da9;}
+
+.paper_link:hover {
+    color: #0d1b2a;
+    padding-bottom: 2px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    width: fit-content;
 }
 
 .standard {

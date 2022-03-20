@@ -22,10 +22,9 @@ def english():
     epapers = models.Paper.query.filter_by(subject=1)
     return render_template ("english.html", page_title="English_Past_Papers", epapers=epapers)
 
-
-
 @app.route("/past_papers_math")
 def math():
+    epapers = models.Paper.query.filter_by(subject=1)
     return render_template("math.html", page_title="Math_Past_Papers")
 
 @app.route("/past_papers_physics")
