@@ -23,9 +23,9 @@ def english():
     return render_template ("english.html", page_title="English_Past_Papers", epapers=epapers)
 
 @app.route("/past_papers_math")
-def math():
-    epapers = models.Paper.query.filter_by(subject=1)
-    return render_template("math.html", page_title="Math_Past_Papers")
+def maths():
+    mpapers = models.Paper.query.filter_by(subject=2)
+    return render_template("maths.html", page_title="Math_Past_Papers", mpapers=mpapers)
 
 @app.route("/past_papers_physics")
 def physics():

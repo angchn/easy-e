@@ -12,10 +12,10 @@
     <h1 class="level">level three</h1>
     <div class="standard">
         <div class="standard_box">
-            <h2 class="standard_title">written text</h2>
-            <p class="standard_description">91472 - Respond critically to specified aspect(s) of studied written text(s), supported by evidence.</p>
+            <h2 class="standard_title">unfamiliar text</h2>
+            <p class="standard_description">91472 - Respond critically to significant aspects of unfamiliar written texts through close reading, supported by evidence.</p>
             {% for epaper in epapers %}
-            {% if epaper.standard == "written" %}
+            {% if epaper.standard == "unfamiliar" %}
             <ul>
                 <a class="paper_link" href="/static/past_paper_files/{{epaper.paper_file}}" target="_blank">{{epaper.name}}</a>
             </ul>
@@ -34,10 +34,10 @@
             {% endfor %}
         </div>
         <div class="standard_box">
-            <h2 class="standard_title">unfamiliar text</h2>
-            <p class="standard_description">91474 - Respond critically to significant aspects of unfamiliar written texts through close reading, supported by evidence.</p>
+            <h2 class="standard_title">written text</h2>
+            <p class="standard_description">91474 - Respond critically to specified aspect(s) of studied written text(s), supported by evidence.</p>
             {% for epaper in epapers %}
-            {% if epaper.standard == "unfamiliar" %}
+            {% if epaper.standard == "written" %}
             <ul>
                 <a class="paper_link" href="/static/past_paper_files/{{epaper.paper_file}}" target="_blank">{{epaper.name}}</a>
             </ul>
@@ -48,3 +48,4 @@
 </div>
 
 {% endblock %}
+
