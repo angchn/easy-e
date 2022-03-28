@@ -180,6 +180,7 @@ body {
     color: #485b72;
     display: block;
     width: fit-content;
+    margin-bottom: 5px;
 }
 
 .footer_link:hover {
