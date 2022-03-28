@@ -12,10 +12,10 @@
     <h1 class="level">level three</h1>
     <div class="standard">
         <div class="standard_box">
-            <h2 class="standard_title">integration</h2>
+            <h2 class="standard_title">differentiation</h2>
             <p class="standard_description">91577 - </p>
             {% for mpaper in mpapers %}
-            {% if mpaper.standard == "integration" %}
+            {% if mpaper.standard == "differentiation" %}
             <ul>
                 <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
             </ul>
@@ -23,10 +23,10 @@
             {% endfor %}
         </div>
         <div class="standard_box">
-            <h2 class="standard_title">visual text</h2>
+            <h2 class="standard_title">integration</h2>
             <p class="standard_description">91473 - Respond critically to specified aspect(s) of studied visual or oral text(s), supported by evidence. </p>
             {% for mpaper in mpapers %}
-            {% if mpaper.standard == "visual" %}
+            {% if mpaper.standard == "integration" %}
             <ul>
                 <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
             </ul>
