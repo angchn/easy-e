@@ -12,8 +12,19 @@
     <h1 class="level">level three</h1>
     <div class="standard">
         <div class="standard_box">
+            <h2 class="standard_title">complex numbers</h2>
+            <p class="standard_description">91474 - Apply the algebra of complex numbers in solving problems.</p>
+            {% for mpaper in mpapers %}
+            {% if mpaper.standard == "numbers" %}
+            <ul>
+                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
+            </ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="standard_box">
             <h2 class="standard_title">differentiation</h2>
-            <p class="standard_description">91577 - </p>
+            <p class="standard_description">91572 - Apply differentiation methods in solving problems.</p>
             {% for mpaper in mpapers %}
             {% if mpaper.standard == "differentiation" %}
             <ul>
@@ -24,20 +35,9 @@
         </div>
         <div class="standard_box">
             <h2 class="standard_title">integration</h2>
-            <p class="standard_description">91473 - Respond critically to specified aspect(s) of studied visual or oral text(s), supported by evidence. </p>
+            <p class="standard_description">91579 - Apply integration methods in solving problems.</p>
             {% for mpaper in mpapers %}
             {% if mpaper.standard == "integration" %}
-            <ul>
-                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
-            </ul>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="standard_box">
-            <h2 class="standard_title">complex numbers</h2>
-            <p class="standard_description">91474 - Apply the algebra of complex numbers in solving problems.</p>
-            {% for mpaper in mpapers %}
-            {% if mpaper.standard == "numbers" %}
             <ul>
                 <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
             </ul>

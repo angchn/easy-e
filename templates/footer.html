@@ -4,15 +4,30 @@
 
 <div id="footer">
     <div id="footer_content">
-        <div id="footer_container">
+        <div id="footer_title">
             <h2 id="footer_description">strive to excel with</h2>
             <h1 id="footer_home">easy.e</h1>
         </div>
         <div id="footer_container">
             <h3 id="footer_headings">explore</h3>
-            <a class="footer_link">home</a>
+            <a class="footer_link" href="{{url_for('home')}}">home</a>
             <a class="footer_link">about</a>
             <a class="footer_link">contact</a>
+        </div>
+        <div id="footer_container">
+            <h3 id="footer_headings">past papers</h3>
+            <a class="footer_link" href="{{url_for('english')}}">english</a>
+            <a class="footer_link" href="{{url_for('maths')}}">maths</a>
+            <a class="footer_link" href="{{url_for('physics')}}">physics</a>
+            <a class="footer_link" href="{{url_for('chemistry')}}">chemistry</a>
+            <a class="footer_link" href="{{url_for('biology')}}">biology</a>
+        </div>
+        <div id="footer_container">
+            <h3 id="footer_headings">other</h3>
+            <a class="footer_link" href="https://github.com/angchn/webapp" target="_blank" rel="noopener noreferrer">github</a>
+            <br>
+            <a class="footer_link">sign up</a>
+            <a class="footer_link">login</a>
         </div>
         <p id="copyright">© Angela Chen 2022</p>
     </div>

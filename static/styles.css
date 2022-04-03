@@ -119,15 +119,23 @@ body {
 
 #footer {
     background-color: #778da9;
-    height: 250px;
+    height: 275px;
     bottom: 0;
     margin-top: 70px;
+    position: relative;
 }
 
 #footer_content {
     width: 75%;
     margin: auto;
     padding-top: 40px;
+}
+
+#footer_title {
+    width: 35%;
+    display: inline-block;
+    height: 100px;
+    vertical-align: top;
 }
 
 #footer_container {
@@ -171,6 +179,10 @@ body {
     color: #485b72;
     text-align: center;
     font-size: 14px;
+    margin-bottom: 0px;
+    width: 100%;
+    vertical-align: bottom;
+    margin-top: 100px;
 }
 
 .footer_link {
