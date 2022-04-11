@@ -1,6 +1,13 @@
 from main import db
 
 class Paper(db.Model):
+    __tablename__ = "user_login"
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(15), unique=True)
+    user_email = db.Column(db.String())
+    user_password = db.Column(db.String(80))
+
+class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
     paper_file = db.Column(db.Text())

@@ -1,0 +1,12 @@
+
+<div>
+    <form class="login" method="POST" action="/signup">
+        <h2 class="login_header">signup</h2>
+        {{ form.csrf_token }}
+        {{ form.username }}
+        {{ form.email }}
+        {{ form.password }}
+        <button class="login_button" type="submit">login</button>
+    </form>
+    <a href="{{url_for('signup')}}">sign up here</a>
+</div>
