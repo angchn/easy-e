@@ -4,7 +4,7 @@ body {
     padding: 0;
 }
 
-#navbar {
+.navbar {
     font-family: 'Outfit', sans-serif;
     font-size: 20px;
     color: #778da9;
@@ -301,4 +301,17 @@ body {
     width: 90%;
     margin: auto;
     margin-bottom: 50px;
+}
+
+.login_block {
+    padding: 80px;
+    width: 60%;
+    text-align: center;
+    margin: auto;
+}
+
+.login_header {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 30px;
 }

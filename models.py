@@ -1,4 +1,5 @@
 from main import db
+from flask_login import UserMixin
 
 class Paper(db.Model):
     __tablename__ = "past_papers"
@@ -21,13 +22,13 @@ class Subjects(db.Model):
     def __repr__(self):
         return self.subject_name
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "user_login"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
+    name = db.Column(db.Text())
     user_name = db.Column(db.String(15), unique=True)
     user_email = db.Column(db.String(50), unique=True)
     user_password = db.Column(db.String(80))
-    todo_id = db.Column(db.Integer, db.ForeignKey('user_todo.id'))
-    calender_id = db.Column(db.Integer, db.ForeignKey('user_calender.id'))
-    notes_id = db.Column(db.Integer, db.ForeignKey('user_notes,id'))
+    #todo_id = db.Column(db.Integer, db.ForeignKey('user_todo.id'))
+    #calender_id = db.Column(db.Integer, db.ForeignKey('user_calender.id'))
+    #notes_id = db.Column(db.Integer, db.ForeignKey('user_notes,id'))

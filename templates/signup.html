@@ -3,6 +3,7 @@
     <form class="login" method="POST" action="/signup">
         <h2 class="login_header">signup</h2>
         {{ form.csrf_token }}
+        {{ form.name }}
         {{ form.username }}
         {{ form.email }}
         {{ form.password }}
