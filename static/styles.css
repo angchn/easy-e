@@ -312,6 +312,41 @@ body {
 
 .login_header {
     font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    user-select: none;
+    margin-bottom: 30px;
+}
+
+.login_selected {
+    width: 50%;
     font-weight: 300;
-    font-size: 30px;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.login_unselected {
+    color: #778da9;
+    font-weight: 100;
+    width: 50%;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.login_selected:visited{
+    color: #0d1b2a;
+}
+
+.login_unselected:hover{
+    color: #485b72;
+}
+
+.login_labels {
+    font-family: 'Inter', sans-serif;
+}
+
+.login_boxes {
+    font-family: 'Inter', sans-serif;
+    height: 30px;
+    color: #0d1b2a;
+    padding: 10px;
 }

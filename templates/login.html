@@ -12,12 +12,15 @@
 
 <div class="login_block">
     <form class="login" method="POST" action="/login">
-        <h2 class="login_header">login</h2>
+        <div class="login_header">
+            <a class="login_selected" href="{{url_for('login')}}">login</a><a class="login_unselected" href="{{url_for('signup')}}">signup</a>
+        </div>
         {{ form.csrf_token }}
-        <p>username</p>
-        {{ form.username }}
-        <p>password</p>
-        {{ form.password }}
+        <p class="login_labels">username</p>
+        {{ form.username(class="login_boxes") }}
+        <p class="login_labels">password</p>
+        {{ form.password(class="login_boxes") }}
+        <br>
         <br>
         <button class="login_button" type="submit">login</button>
     </form>
