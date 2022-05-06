@@ -1,7 +1,20 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
+    <title>sign up | easy.e</title>
+</head> 
 
-<div>
-    <form class="login" method="POST" action="/signup">
-        <h2 class="login_header">signup</h2>
+<nav class="navbar">
+    <a id="home_button" href="{{url_for('home')}}">easy.e</a>
+</nav>
+
+<div class="login_block">
+    <form class="login" method="POST" action="/signup" autocomplete="off">
+        <div class="login_header">
+            <a class="login_unselected" href="{{url_for('login')}}">login</a><a class="login_selected" href="{{url_for('signup')}}">signup</a>
+        </div>
         {{ form.csrf_token }}
         {{ form.name }}
         {{ form.username }}

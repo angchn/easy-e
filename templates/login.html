@@ -11,7 +11,7 @@
 </nav>
 
 <div class="login_block">
-    <form class="login" method="POST" action="/login">
+    <form class="login" method="POST" action="/login" autocomplete="off">
         <div class="login_header">
             <a class="login_selected" href="{{url_for('login')}}">login</a><a class="login_unselected" href="{{url_for('signup')}}">signup</a>
         </div>
@@ -21,8 +21,11 @@
         <p class="login_labels">password</p>
         {{ form.password(class="login_boxes") }}
         <br>
+        <div class="login_remember">
+            {{ form.remember(class="checkbox") }} <p class="remember">remember me</p>
+        </div>
         <br>
-        <button class="login_button" type="submit">login</button>
+        <br>
+        <button class="login_button" type="submit" class="login_button">login</button>
     </form>
-    <a href="{{url_for('signup')}}">signup</a>
 </div>
