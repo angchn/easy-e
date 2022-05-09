@@ -1,5 +1,5 @@
 from re import I
-from flask import Flask, render_template, abort, redirect, url_for
+from flask import Flask, render_template, abort, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -31,7 +31,7 @@ def login():
         user = models.User.query.filter_by(user_name=form.username.data).first()
         if user:
             if check_password_hash(user.user_password, form.password.data):
-                login_user(user)
+                login_user(user, remember=form.remember.data)
                 return redirect (url_for("dashboard"))
         return "<h1>Invalid username or password.</h1>"
     return render_template("login.html", form=form)
@@ -41,11 +41,12 @@ def signup():
     form = RegisterForm()
     if form.validate_on_submit(): 
         hashed_password = generate_password_hash(form.password.data, method="sha256")
-        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password, )
+        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password)
         db.session.add(new_user)
         print (new_user)
         db.session.commit()
-        return redirect (url_for("dashboard"))
+        flash ("You have successfully created a new account!")
+        return redirect (url_for("login"))
     return render_template("signup.html", form=form)
 
 @app.route("/logout")

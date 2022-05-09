@@ -354,6 +354,25 @@ body {
     font-size: 17px;
 }
 
+.remember_me {
+    text-align: center;
+    list-style: inside;
+    justify-content: center;
+    padding-left: 0;
+}
+
+.remember_label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #778da9;
+    font-weight: bold;
+}
+
+.login_checkbox {
+    cursor: pointer;
+    vertical-align: middle;
+}
+
 .login_sublabels {
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;

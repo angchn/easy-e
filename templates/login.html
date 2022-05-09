@@ -21,7 +21,10 @@
         <p class="login_labels">password</p>
         {{ form.password(class="login_boxes") }}
         <br>
-        <br>
+        <ul class="remember_me">
+            {{ form.remember(class="login_checkbox") }}
+            <label class="remember_label">remember me</label>
+        </ul>
         <br>
         <br>
         <button class="login_button" type="submit" class="login_button">login</button>

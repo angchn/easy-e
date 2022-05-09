@@ -31,4 +31,10 @@
         <br>
         <button class="login_button" type="submit">sign up</button>
     </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
 </div>
