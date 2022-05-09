@@ -16,11 +16,19 @@
             <a class="login_unselected" href="{{url_for('login')}}">login</a><a class="login_selected" href="{{url_for('signup')}}">signup</a>
         </div>
         {{ form.csrf_token }}
-        {{ form.name }}
-        {{ form.username }}
-        {{ form.email }}
-        {{ form.password }}
-        <button class="login_button" type="submit">login</button>
+        <p class="login_labels">display name</p>
+        {{ form.name(class="login_boxes") }}
+        <p class="login_sublabels"><em>Minimum 4 characters.</em></p>
+        <p class="login_labels">username</p>
+        {{ form.username(class="login_boxes") }}
+        <p class="login_sublabels"><em>Minimum 4 characters. Maximum 15 characters.</em></p>
+        <p class="login_labels">email</p>
+        {{ form.email(class="login_boxes") }}
+        <p class="login_labels">password</p>
+        {{ form.password(class="login_boxes") }}
+        <p class="login_sublabels"><em>Minimum 8 characters. Maximum 80 characters.</em></p>
+        <br>
+        <br>
+        <button class="login_button" type="submit">sign up</button>
     </form>
-    <a href="{{url_for('login')}}">login</a>
 </div>

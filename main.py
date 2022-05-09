@@ -31,7 +31,7 @@ def login():
         user = models.User.query.filter_by(user_name=form.username.data).first()
         if user:
             if check_password_hash(user.user_password, form.password.data):
-                login_user(user, remember=form.remember.data)
+                login_user(user)
                 return redirect (url_for("dashboard"))
         return "<h1>Invalid username or password.</h1>"
     return render_template("login.html", form=form)
@@ -41,7 +41,7 @@ def signup():
     form = RegisterForm()
     if form.validate_on_submit(): 
         hashed_password = generate_password_hash(form.password.data, method="sha256")
-        new_user = models.User(user_name=form.username.data, user_email=form.email.data, user_password=hashed_password, )
+        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password, )
         db.session.add(new_user)
         print (new_user)
         db.session.commit()
@@ -57,7 +57,7 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html", name=current_user.user_name)
+    return render_template("dashboard.html", name=current_user.name)
 
 @app.route("/past_papers")
 def papers():

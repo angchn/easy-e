@@ -354,8 +354,16 @@ body {
     font-size: 17px;
 }
 
+.login_sublabels {
+    font-family: 'Inter', sans-serif;
+    color: #0d1b2a;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
 .login_boxes {
     font-family: 'Inter', sans-serif;
+    font-size: 15px;
     height: 40px;
     color: #0d1b2a;
     padding: 15px;
@@ -368,35 +376,12 @@ input:focus {
     outline:none;
 }
 
-.login_remember {
-    display: inline-block;
-    text-align: center;
-    padding: 20px;
-    margin-top: -20px;
-}
-
-.checkbox {
-    vertical-align: center;
-    width: fit-content;
-    float: left;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.remember {
-    font-family: 'Inter', sans-serif;
-    width: fit-content;
-    float: left;
-    padding-left: 20px;
-    font-weight: bold;
-}
-
 .login_button {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     font-size: 17px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: 2px solid #778da9;
     background-color: #778da9;
     width: 100px;
