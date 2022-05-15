@@ -32,6 +32,7 @@ def login():
         if user:
             if check_password_hash(user.user_password, form.password.data):
                 login_user(user, remember=form.remember.data)
+                flash ("Login successful!", 'login')
                 return redirect (url_for("dashboard"))
         return "<h1>Invalid username or password.</h1>"
     return render_template("login.html", form=form)
@@ -45,7 +46,7 @@ def signup():
         db.session.add(new_user)
         print (new_user)
         db.session.commit()
-        flash ("You have successfully created a new account!")
+        flash ("Sign up successful!", 'login')
         return redirect (url_for("login"))
     return render_template("signup.html", form=form)
 

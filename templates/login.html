@@ -29,4 +29,10 @@
         <br>
         <button class="login_button" type="submit" class="login_button">login</button>
     </form>
+
+    {% for category, message in get_flashed_message(with categories=True) %}
+            <div>{{ message }}</div>
+    {% endfor %}
+
+
 </div>

@@ -59,6 +59,10 @@ body {
     color: #778da9;
 }
 
+.dashboard_button:hover {
+    color: #0d1b2a; 
+}
+
 #header{
     text-align: center;
     padding-top: 175px;
@@ -446,19 +450,31 @@ input:focus {
     padding-top: 100px;
     font-size: 20px;
     width: 50%;
+    margin-bottom: 0;
 }
 
 .welcome {
     font-weight: 300;
     color: #778da9;
+    user-select: none;
 }
 
 .welcome_name {
     font-weight: 300;
-    font-size: 80px;
+    font-size: 70px;
     padding-top: 0;
     margin-top: -45px;
     color: #0d1b2a;
+    user-select: none;
+}
+
+.dashboard_photo {
+    height: 25vh;
+    width: 90%;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-top: -100px;
+    padding-top: 0px;
 }
 
 .dashboard_subheadings {
@@ -476,12 +492,19 @@ input:focus {
 }
 
 .calender {
-    height: 50vh;
+    height: 51vh;
     background-color: white;
     border-radius: 25px;
     margin-top: 0px;
 }
 
-.todo_text, .calender_text {
+.favourites {
+    background-color: white;
+    border-radius: 25px;
+    width: 90%;
+    margin-top: -80px;
+}
+
+.todo_text, .calender_text, .favourites_text {
     padding: 20px;
 }
