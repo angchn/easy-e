@@ -7,8 +7,8 @@
 </head> 
 
 <nav class="navbar">
-    <a id="home_button" href="{{url_for('home')}}">easy.e</a>
-    <a id="dashboard_button" href="{{url_for('dashboard')}}">dashboard</a>
+    <a id="home_button">easy.e</a>
+    <a class="dashboard_button" href="{{url_for('dashboard')}}">dashboard</a>
     <a class="nav_button" href="{{url_for('logout')}}">logout</a>
     <div id="paper_dropdown">
         <button class="dropdown_button" href="{{url_for('papers')}}">past papers<i class="arrow down"></i></button>
@@ -22,4 +22,25 @@
     </div>
 </nav>
 
-<h1>welcome, {{ name }}</h1>
+<div class="page">
+    <div class="dashboard_left">
+        <div class="dashboard_header">
+            <h1 class="welcome">welcome,</h1><h1 class="welcome_name">{{ name }}</h1>
+        </div>
+        <div class="favourites">
+            <h2>favourites</h2>
+        </div>
+    </div>
+    <div class="dashboard_right">
+        <div class="todo">
+            <div class="todo_text">
+                <h2 class="dashboard_subheadings">to-do list</h2>
+            </div>
+        </div>
+        <div class="calender">
+            <div class="calender_text">
+                <h2 class="dashboard_subheadings">upcoming deadlines</h2>
+            </div>
+        </div>
+    </div>
+</div>
