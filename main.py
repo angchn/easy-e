@@ -56,23 +56,10 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
-@app.route("/add_task", methods=["POST"])
-def add():
-    todo = models.Todo(name=request.form["new_task"])
-    db.session.add(todo)
-    db.session.commit()
-    return redirect (url_for("dashboard"))
-
-@app.route("/update_task", methods=["POST"])
-def update():
-    print(request.form)
-    return redirect (url_for("dashboard"))
-
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    tasks = models.Todo.query.all()
-    return render_template("dashboard.html", name=current_user.name, tasks=tasks)
+    return render_template("dashboard.html", name=current_user.name)
 
 @app.route("/past_papers")
 def papers():
