@@ -27,7 +27,6 @@
         <div class="dashboard_header">
             <h1 class="welcome">welcome,</h1><h1 class="welcome_name">{{ name }}</h1>
         </div>
-        <img class="dashboard_photo" src="static/dashboard.png">
         <div class="favourites">
             <div class="favourites_text">
                 <h2 class="dashboard_subheadings">favourited notes</h2>
@@ -38,6 +37,21 @@
         <div class="todo">
             <div class="todo_text">
                 <h2 class="dashboard_subheadings">to-do list</h2>
+                <div>
+                    <form action="/add_task" method="POST">
+                        <input type="text" name="new_task">
+                        <input type="submit" value="add task">
+                    </form>
+                </div>
+
+                <form action="/update_task" method="POST">
+                    {% for task in tasks %}
+                        <ul>
+                            <li class="task"><input type="checkbox" name="task.id">{{ task.name }}</li>
+                        </ul>
+                    {% endfor %}
+                    <input type="submit" value="update task">
+                </form>
             </div>
         </div>
         <div class="calender">

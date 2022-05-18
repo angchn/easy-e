@@ -1,5 +1,5 @@
 from re import I
-from flask import Flask, render_template, abort, redirect, url_for, flash
+from flask import Flask, render_template, abort, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -56,10 +56,23 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
+@app.route("/add_task", methods=["POST"])
+def add():
+    todo = models.Todo(name=request.form["new_task"])
+    db.session.add(todo)
+    db.session.commit()
+    return redirect (url_for("dashboard"))
+
+@app.route("/update_task", methods=["POST"])
+def update():
+    print(request.form)
+    return redirect (url_for("dashboard"))
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html", name=current_user.name)
+    tasks = models.Todo.query.all()
+    return render_template("dashboard.html", name=current_user.name, tasks=tasks)
 
 @app.route("/past_papers")
 def papers():
