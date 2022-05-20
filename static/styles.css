@@ -83,6 +83,52 @@ body {
     margin-top: -50px;
     user-select: none;
 }
+
+.home_sections {
+    text-align: center;
+    height: 300px;
+}
+
+.home_headings {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    color: #0d1b2a;
+}
+
+.home_descriptions {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: #778da9;
+    margin-top: -20px;
+}
+
+.home_buttons {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 15px;
+    border-radius: 30px;
+    border: 2px solid #778da9;
+    background-color: #778da9;
+    width: fit-content;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition-duration: 0.2s;
+}
+
+.home_buttons:hover {
+    background-color: white;
+    border: 2px solid #778da9;
+    color: #778da9;
+}
+
+.mask_girl {
+    position: absolute;
+    margin-top: -200px;
+}
+
 #paper_dropdown {
     position: relative;
     float: right;
