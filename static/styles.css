@@ -66,6 +66,7 @@ body {
 #header{
     text-align: center;
     padding-top: 175px;
+    height: 300px;
 }
 
 #subtitle {
@@ -82,6 +83,17 @@ body {
     font-weight: 300;
     margin-top: -50px;
     user-select: none;
+}
+
+.home_papers {
+    width: 50%;
+    margin-left: 30%;
+}
+
+.home_subjects{
+    border-radius: 25px;
+    margin-right: 10px;
+    padding: 15px;
 }
 
 .home_sections {
@@ -127,6 +139,13 @@ body {
 .mask_girl {
     position: absolute;
     margin-top: -200px;
+}
+
+.study_girl {
+    position: absolute;
+    margin-top: -100px;
+    width: 25%;
+    height: auto;
 }
 
 #paper_dropdown {
