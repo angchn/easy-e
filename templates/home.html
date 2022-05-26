@@ -4,20 +4,33 @@
 {% block content %}
 <div id="header">
     <h2 id="subtitle">strive to excel with</h2>
-        <h1 id="title">easy.e<h1>
+    <h1 id="title">easy.e<h1>
+    <a href="{{url_for('signup')}}"><button class="home_buttons" type="button">sign up now</button></a>
 </div>
 
 <div class="page">
+    
+    <div class="home_sections_left">
+        <h2 class="home_headings">organise your life</h2>
+        <h2 class="home_headings" style="margin-top:-40px;">inside and outside of school.</h2>
+        <p class="home_descriptions">organise your tasks and notes all in one place.</p>
+    </div>
+    <div class="home_sections_right">
+        <h2 class="home_headings">keep track of your progress</h2>
+        <h2 class="home_headings" style="margin-top:-40px;">in a clear, simple calender.</h2>
+        <p class="home_descriptions">keep all your important dates and deadlines.</p>
+    </div>
     <img src="/static/home_illustration.png" class="study_girl">
     <div class="home_sections">
         <h2 class="home_headings">find past papers</h2>
-        <p class="home_descriptions">official ncea papers from nzqa</p>
+        <p class="home_descriptions">official NCEA papers from NZQA</p>
         <div class="home_papers">
             <a href="{{url_for('english')}}"><button type=button class="home_subjects">english</button></a>
             <a href="{{url_for('maths')}}"><button type=button class="home_subjects">maths</button></a>
             <a href="{{url_for('physics')}}"><button type=button class="home_subjects">physics</button></a>
             <a href="{{url_for('chemistry')}}"><button type=button class="home_subjects">chemistry</button></a>
             <a href="{{url_for('biology')}}"><button type=button class="home_subjects">biology</button></a>
+            <p class="home_smalltext">* all resources belong to NZQA.</p>
         </div>
     </div>
     <div class="home_sections">

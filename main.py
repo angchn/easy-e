@@ -35,7 +35,7 @@ def login():
                 flash ("Login successful!", 'login')
                 return redirect (url_for("dashboard"))
         return "<h1>Invalid username or password.</h1>"
-    return render_template("login.html", form=form)
+    return render_template ("login.html", form=form)
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -44,22 +44,30 @@ def signup():
         hashed_password = generate_password_hash(form.password.data, method="sha256")
         new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password)
         db.session.add(new_user)
-        print (new_user)
         db.session.commit()
         flash ("Sign up successful!", 'login')
         return redirect (url_for("login"))
-    return render_template("signup.html", form=form)
+    return render_template ("signup.html", form=form)
 
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("home"))
+    return redirect (url_for("home"))
 
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html", name=current_user.name)
+    tasks = models.Todo.query.filter_by(user=current_user.id)
+    return render_template ("dashboard.html", name=current_user.name, tasks=tasks)
+
+@app.route("/add_task", methods=('GET', 'POST'))
+def add_task():
+    if request.method == "POST":
+        new_task = models.Todo(request.form['new_task'])
+        db.session.add(new_task)
+        db.session.commit()
+    return redirect (url_for("dashboard"))
 
 @app.route("/past_papers")
 def papers():

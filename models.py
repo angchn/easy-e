@@ -39,4 +39,4 @@ class Todo(db.Model):
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
 
     def __repr__(self):
-        return f"<Todo '{self.name}'>"
+        return self.name

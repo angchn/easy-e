@@ -38,7 +38,7 @@
             <div class="todo_text">
                 <h2 class="dashboard_subheadings">to-do list</h2>
                 <div>
-                    <form action="/add_task" method="POST">
+                    <form action="{{url_for('add_task')}}" method="POST">
                         <input type="text" name="new_task">
                         <input type="submit" value="add task">
                     </form>
