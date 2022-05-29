@@ -64,7 +64,8 @@ def dashboard():
 @app.route("/add_task", methods=('GET', 'POST'))
 def add_task():
     if request.method == "POST":
-        new_task = models.Todo(request.form['new_task'])
+        task_add = request.form.get("task_add")
+        new_task = models.Todo(name=task_add, user=current_user.id)
         db.session.add(new_task)
         db.session.commit()
     return redirect (url_for("dashboard"))

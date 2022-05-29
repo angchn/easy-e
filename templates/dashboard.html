@@ -39,15 +39,16 @@
                 <h2 class="dashboard_subheadings">to-do list</h2>
                 <div>
                     <form action="{{url_for('add_task')}}" method="POST">
-                        <input type="text" name="new_task">
+                        <input type="text" name="task_add">
                         <input type="submit" value="add task">
                     </form>
                 </div>
 
-                <form action="/update_task" method="POST">
+                <form method="POST">
                     {% for task in tasks %}
                         <ul>
                             <li class="task"><input type="checkbox" name="task.id">{{ task.name }}</li>
+                            <a href="/delete_task/{{ task.id }}">Delete</a>
                         </ul>
                     {% endfor %}
                     <input type="submit" value="update task">
