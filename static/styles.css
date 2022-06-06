@@ -605,3 +605,39 @@ input:focus {
 .todo_text, .calender_text, .favourites_text {
     padding: 20px;
 }
+
+.subheadings_small {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+}
+
+.task {
+    vertical-align: middle;
+    margin-bottom: -10px;
+}
+
+.task_name {
+    width: fit-content;
+    display: inline;
+    font-family: 'Inter', sans-serif;
+    color: #0d1b2a;
+}
+
+.delete_icon {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #485b72;
+    font-weight: 400;
+}
+
+.tick_icon {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.delete {
+    text-decoration: none;
+    color: inherit;
+}

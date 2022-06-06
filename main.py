@@ -16,13 +16,16 @@ login_manager.login_view = "login"
 import models
 from forms import LoginForm, RegisterForm
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return models.User.query.get(int(user_id))
 
+
 @app.route("/")
 def home():
     return render_template ("home.html", page_title="Home")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -37,6 +40,7 @@ def login():
         return "<h1>Invalid username or password.</h1>"
     return render_template ("login.html", form=form)
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     form = RegisterForm()
@@ -49,17 +53,20 @@ def signup():
         return redirect (url_for("login"))
     return render_template ("signup.html", form=form)
 
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect (url_for("home"))
 
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
     tasks = models.Todo.query.filter_by(user=current_user.id)
     return render_template ("dashboard.html", name=current_user.name, tasks=tasks)
+
 
 @app.route("/add_task", methods=('GET', 'POST'))
 def add_task():
@@ -70,32 +77,47 @@ def add_task():
         db.session.commit()
     return redirect (url_for("dashboard"))
 
+
+@app.route("/delete_task/<int:id>")
+def delete_task(id):
+    task_delete = db.session.query(models.Todo).filter_by(id=id).first()
+    db.session.delete(task_delete)
+    db.session.commit()
+    return redirect (url_for("dashboard"))
+
+
 @app.route("/past_papers")
 def papers():
     papers = models.Paper.query.all()
     return render_template ("papers.html", page_title="Past_Papers", papers=papers)
+
 
 @app.route("/past_papers_english")
 def english():
     epapers = models.Paper.query.filter_by(subject=1)
     return render_template ("english.html", page_title="English_Past_Papers", epapers=epapers)
 
+
 @app.route("/past_papers_math")
 def maths():
     mpapers = models.Paper.query.filter_by(subject=2)
     return render_template("maths.html", page_title="Math_Past_Papers", mpapers=mpapers)
 
+
 @app.route("/past_papers_physics")
 def physics():
     return render_template("physics.html", page_title="Physics_Past_Papers")
+
 
 @app.route("/past_papers_chemistry")
 def chemistry():
     return render_template("chemistry.html", page_title="Chemistry_Past_Papers")
 
+
 @app.route ("/past_papers_biology")
 def biology():
     return render_template("biology.html", page_title="Biology_Past_Papers")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

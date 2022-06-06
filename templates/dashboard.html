@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5b4a218e91.js" crossorigin="anonymous"></script>
     <title>{{ name }}'s dashboard | easy.e</title>
 </head> 
 
@@ -46,13 +47,18 @@
 
                 <form method="POST">
                     {% for task in tasks %}
-                        <ul>
-                            <li class="task"><input type="checkbox" name="task.id">{{ task.name }}</li>
-                            <a href="/delete_task/{{ task.id }}">Delete</a>
+                        <ul class="task">
+                            <span class="tick_icon"><i class="fa-solid fa-circle-check"></i></span>
+                            <li class="task_name">{{ task.name }}</li>
+                            <span class="delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i class="fa-solid fa-trash-can"></i></a></span>
                         </ul>
                     {% endfor %}
+                    <br>
                     <input type="submit" value="update task">
                 </form>
+
+                <h3 class="subheadings_small">completed tasks</h3>
+
             </div>
         </div>
         <div class="calender">
