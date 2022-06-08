@@ -623,7 +623,7 @@ input:focus {
     color: #0d1b2a;
 }
 
-.delete_icon {
+.delete_icon, .pen_icon {
     position: relative;
     display: inline-block;
     margin-left: 8px;
@@ -635,9 +635,22 @@ input:focus {
 .tick_icon {
     font-weight: 400;
     font-size: 12px;
+    margin-right: 8px;
+    color: #485b72;
+    position: relative;
+    display: inline-block;
 }
 
-.delete {
+.pen_icon {
+    font-weight: 400;
+    font-size: 12px;
+    margin-right: 8px;
+    color: #485b72;
+    position: relative;
+    display: inline-block;
+}
+
+.delete, .complete, .update {
     text-decoration: none;
     color: inherit;
 }

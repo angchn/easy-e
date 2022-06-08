@@ -64,8 +64,9 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    tasks = models.Todo.query.filter_by(user=current_user.id)
-    return render_template ("dashboard.html", name=current_user.name, tasks=tasks)
+    incomplete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=False)
+    complete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=True)
+    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks)
 
 
 @app.route("/add_task", methods=('GET', 'POST'))
@@ -84,6 +85,14 @@ def delete_task(id):
     db.session.delete(task_delete)
     db.session.commit()
     return redirect (url_for("dashboard"))
+
+
+@app.route("/complete_task/<int:id>")
+def complete_task(id):
+    task = models.Todo.query.filter_by(id=id).first()
+    task.complete = True
+    db.session.commit()
+    return '<h1>{}</h1>'.format(id)
 
 
 @app.route("/past_papers")

@@ -46,18 +46,23 @@
                 </div>
 
                 <form method="POST">
-                    {% for task in tasks %}
+                    {% for task in incomplete_tasks %}
                         <ul class="task">
-                            <span class="tick_icon"><i class="fa-solid fa-circle-check"></i></span>
+                            <span class="tick_icon"><a href="/complete_task/{{ task.id }}" class="complete"><i class="fa-regular fa-circle-check"></i></a></span>
                             <li class="task_name">{{ task.name }}</li>
-                            <span class="delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i class="fa-solid fa-trash-can"></i></a></span>
+                            <span class="delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></span>
+                            <span class="pen_icon"><a href="/update_task/{{ task.id }}" class="update"><i class="fa-solid fa-pencil"></i></a></span>
                         </ul>
                     {% endfor %}
                     <br>
-                    <input type="submit" value="update task">
                 </form>
 
                 <h3 class="subheadings_small">completed tasks</h3>
+                    {% for task in complete_tasks %}
+                        <ul class="task">
+                            <li class="task_name">{{ task.name }}</li>
+                        </ul>
+                    {% endfor %}
 
             </div>
         </div>

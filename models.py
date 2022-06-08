@@ -37,6 +37,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text())
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
+    complete = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         return self.name
