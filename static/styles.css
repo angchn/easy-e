@@ -579,6 +579,7 @@ input:focus {
     font-weight: 200;
     margin-top: 0;
     color: #0d1b2a;
+    position: sticky;
 }
 
 .todo {
@@ -586,6 +587,7 @@ input:focus {
     border-radius: 25px;
     margin-top: 20px;
     height: 35vh;
+    overflow-y: auto;
 }
 
 .calender {
@@ -609,6 +611,34 @@ input:focus {
 .subheadings_small {
     font-family: 'Outfit', sans-serif;
     font-weight: 200;
+    margin-bottom: -10px;
+}
+
+.todo_textbox {
+    font-family: 'Inter', sans-serif;
+    color: #0d1b2a;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-bottom: 2px solid #778da9;
+    width: 70%;
+}
+
+::placeholder{
+    color: #778da9;
+    font-weight: normal;
+}
+
+.todo_button {
+    color: #778da9;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    width: 20%;
+    background-color: #f6f5f0;
+    font-family: 'Inter', sans-serif;
+    margin-left: 15px;
 }
 
 .task {
@@ -621,6 +651,17 @@ input:focus {
     display: inline;
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;
+    font-weight: bold;
+}
+
+.completed_task_name {
+    width: fit-content;
+    display: inline;
+    font-family: 'Inter', sans-serif;
+    color: #778da9;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    font-weight: bold;
 }
 
 .delete_icon, .pen_icon {

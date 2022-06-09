@@ -89,10 +89,18 @@ def delete_task(id):
 
 @app.route("/complete_task/<int:id>")
 def complete_task(id):
-    task = models.Todo.query.filter_by(id=id).first()
+    task = db.session.query(models.Todo).filter_by(id=id).first()
     task.complete = True
     db.session.commit()
-    return '<h1>{}</h1>'.format(id)
+    return redirect (url_for("dashboard"))
+
+
+@app.route("/redo_complete_task/<int:id>")
+def redo_complete_task(id):
+    task = db.session.query(models.Todo).filter_by(id=id).first()
+    task.complete = False
+    db.session.commit()
+    return redirect (url_for("dashboard"))
 
 
 @app.route("/past_papers")
