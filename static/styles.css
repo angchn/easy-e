@@ -384,8 +384,8 @@ body {
 .standard_box {
     width: 30%;
     padding: 10px;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    margin-left: 1%;
+    margin-right: 1%;
     display: grid;
     float: right;
     background-color: white;
@@ -580,6 +580,8 @@ input:focus {
     margin-top: 0;
     color: #0d1b2a;
     position: sticky;
+    width: fit-content;
+    display: inline-block;
 }
 
 .todo {
@@ -588,6 +590,7 @@ input:focus {
     margin-top: 20px;
     height: 35vh;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .calender {
@@ -604,6 +607,31 @@ input:focus {
     margin-top: -80px;
 }
 
+.note_button {
+    float: right;
+    margin-top: -2px;
+    margin-right: 20px;
+}
+
+.search_icon {
+    margin-left: 10px;
+    font-size: 13px;
+    color: #485b72;
+    margin-bottom: 0;
+}
+
+.favourites_left{
+    display: inline-block;
+    width: 75%;
+    margin-top: -20px;
+}
+
+.favourites_right {
+    width: 20%;
+    display: inline-block;
+    margin-top: -20px;
+}
+
 .todo_text, .calender_text, .favourites_text {
     padding: 20px;
 }
@@ -614,23 +642,25 @@ input:focus {
     margin-bottom: -10px;
 }
 
-.todo_textbox {
+.todo_textbox, .notes_search {
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;
     padding: 5px;
-    font-weight: bold;
     font-size: 15px;
     border: none;
     border-bottom: 2px solid #778da9;
-    width: 70%;
 }
+
+.todo_textbox {width:72%;}
+
+.notes_search {width: 90%;}
 
 ::placeholder{
     color: #778da9;
     font-weight: normal;
 }
 
-.todo_button {
+.todo_button, .note_button {
     color: #778da9;
     border-radius: 20px;
     padding: 10px;
@@ -639,19 +669,41 @@ input:focus {
     background-color: #f6f5f0;
     font-family: 'Inter', sans-serif;
     margin-left: 15px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.todo_button:hover, .note_button:hover {
+    color: #f6f5f0;
+    background-color: #778da9;
 }
 
 .task {
     vertical-align: middle;
     margin-bottom: -10px;
+    display: flex;
+}
+
+.truncate {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 70%;
+    display: inline-block;
 }
 
 .task_name {
-    width: fit-content;
     display: inline;
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;
-    font-weight: bold;
+    width: fit_content;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
 }
 
 .completed_task_name {
@@ -661,16 +713,20 @@ input:focus {
     color: #778da9;
     text-decoration: line-through;
     text-decoration-thickness: 2px;
-    font-weight: bold;
 }
 
-.delete_icon, .pen_icon {
+.delete_icon, .pen_icon, .completed_delete_icon {
     position: relative;
     display: inline-block;
     margin-left: 8px;
     font-size: 12px;
     color: #485b72;
     font-weight: 400;
+    margin-top: 6px;
+}
+
+.completed_delete_icon {
+    margin-right: 10px;
 }
 
 .tick_icon {
@@ -680,6 +736,7 @@ input:focus {
     color: #485b72;
     position: relative;
     display: inline-block;
+    margin-top: 6px;
 }
 
 .pen_icon {
