@@ -66,7 +66,15 @@ def logout():
 def dashboard():
     incomplete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=False)
     complete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=True)
-    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks)
+    notes = models.Notes.query.filter_by(user=current_user.id)
+    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, notes=notes)
+
+
+@app.route("/notes")
+@login_required
+def notes():
+    notes = models.Notes.query.filter_by(user=current_user.id)
+    return render_template ("notes.html", name=current_user.name, notes=notes)
 
 
 @app.route("/add_task", methods=('GET', 'POST'))

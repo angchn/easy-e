@@ -1,6 +1,11 @@
 from main import db
 from flask_login import UserMixin
 
+note_subject = db.Table('note_subject',
+    db.Column('note_id', db.Integer, db.ForeignKey('notes.id')),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'))
+)
+
 class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
@@ -8,8 +13,6 @@ class Paper(db.Model):
     name = db.Column(db.Text())
     subject = db.Column(db.Integer, db.ForeignKey('subjects.id'))
     standard = db.Column(db.Text())
-
-    subjects = db.relationship('Subjects', backref='papers', lazy=True)
 
     def __repr__(self):
         return self.paper_file 
@@ -38,6 +41,18 @@ class Todo(db.Model):
     name = db.Column(db.Text())
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
     complete = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return self.name
+
+class Notes(db.Model):
+    __tablename__ = "notes"
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
+    name = db.Column(db.Text())
+    favourite = db.Column(db.Boolean, default=False)
+
+    subjects = db.relationship('Subjects', secondary=note_subject, backref='subjects')
 
     def __repr__(self):
         return self.name

@@ -607,10 +607,35 @@ input:focus {
     margin-top: -80px;
 }
 
-.note_button {
-    float: right;
-    margin-top: -2px;
-    margin-right: 20px;
+.favourites_heading {
+    margin-bottom: -10px;
+}
+
+.notes_link {
+    font-family: 'Inter', sans-serif;
+    margin-left: 10px;
+    text-decoration: none;
+    color: #778da9;
+    font-size: 14px;
+    border-bottom: 2px solid #778da9;
+    font-weight: bold;
+}
+
+.notes_link:hover {
+    color: #485b72;
+}
+
+.arrow_icon_right {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.notes_header {
+    font-family: 'Outfit', sans-serif;
+    padding-top: 30px;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 .search_icon {
@@ -623,13 +648,15 @@ input:focus {
 .favourites_left{
     display: inline-block;
     width: 75%;
-    margin-top: -20px;
+    vertical-align: top;
+    margin-top: 0;
 }
 
 .favourites_right {
     width: 20%;
     display: inline-block;
-    margin-top: -20px;
+    margin-top: -10px;
+    vertical-align: top;
 }
 
 .todo_text, .calender_text, .favourites_text {
@@ -665,7 +692,6 @@ input:focus {
     border-radius: 20px;
     padding: 10px;
     border: none;
-    width: 20%;
     background-color: #f6f5f0;
     font-family: 'Inter', sans-serif;
     margin-left: 15px;
@@ -674,6 +700,16 @@ input:focus {
     font-size: 15px;
     margin-right: 10px;
 }
+
+.todo_button {width: 20%;}
+
+.note_button {
+    float: right;
+    margin-top: -2px;
+    margin-right: 20px;
+    width: 22%;
+}
+
 
 .todo_button:hover, .note_button:hover {
     color: #f6f5f0;

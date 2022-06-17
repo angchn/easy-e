@@ -30,12 +30,18 @@
         </div>
         <div class="favourites">
             <div class="favourites_text">
-                <h2 class="dashboard_subheadings">favourited notes</h2>
-                <a><button class="note_button">new note</button></a>
+                <div class="favourites_heading">
+                    <h2 class="dashboard_subheadings">favourited notes</h2>
+                    <a href="{{url_for('notes')}}" class="notes_link">all notes<span class="arrow_icon_right"><i class="fa-solid fa-angle-right"></i></span></a>
+                    <a><button class="note_button">new note</button></a>
+                </div>
                 <div class="favourites_left">
                     <form method="POST">
                         <input type="text" placeholder="search notes" class="notes_search"><span class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </form>
+                    {% for note in notes %}
+                        <li>{{ note.name }}</li>
+                    {% endfor %}
                 </div>
                 <div class="favourites_right">
                     <h3 class="subheadings_small">folders</h3>
