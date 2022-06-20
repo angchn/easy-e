@@ -24,16 +24,14 @@
 </nav>
 
 <div class="page">
-    <div class="notes_header">
-        <h1 class="welcome">{{ name }}'s</h1>
-        <h1 class="welcome_name">notes</h1>
-    </div>
-    <div>
-        <h1 class="notes_subheading">subjects</h1>
-    </div>
-
-    {% for note in notes %}
-        <li>{{ note.name }}</li>
-    {% endfor %}
-
+    <br>
+    <br>
+    <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
+    <form method="POST" class="new_note_form">
+        {{ form.title(id="new_note_title", placeholder="title") }}
+        {{ form.body(rows=10) }}
+        <input type="submit">
+    </form>
+    {{ ckeditor.load(pkg_type="standard") }}
+    {{ ckeditor.config(name='body') }}
 </div>

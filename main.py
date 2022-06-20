@@ -4,16 +4,19 @@ from flask_sqlalchemy import SQLAlchemy
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from flask_ckeditor import CKEditor
 
 app = Flask (__name__)
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
+ckeditor = CKEditor(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
 import models
+import forms
 from forms import LoginForm, RegisterForm
 
 
@@ -75,6 +78,20 @@ def dashboard():
 def notes():
     notes = models.Notes.query.filter_by(user=current_user.id)
     return render_template ("notes.html", name=current_user.name, notes=notes)
+
+
+@app.route("/new_note")
+def new_note():
+    form = forms.PostForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            notes = models.Notes(user=current_user.id, name=form.title.data, content=form.body.data)
+            form.title.data = ""
+            form.body.data = ""
+            db.session.add(notes)
+            db.session.commit()
+            flash("New note created!")
+    return render_template("new_note.html", form=form)
 
 
 @app.route("/add_task", methods=('GET', 'POST'))

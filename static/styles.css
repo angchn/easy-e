@@ -638,6 +638,35 @@ input:focus {
     margin-bottom: 0;
 }
 
+.notes_subheading {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+}
+
+.arrow_icon_left {
+    font-size: 12px;
+}
+
+.back_link {
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #778da9;
+    border-bottom: 2px solid #778da9;
+}
+
+.back_link:visited {color: #778da9}
+
+.new_note_form {
+    margin-top: 50px;
+}
+
+#new_note_title {
+    font-size: 12px;
+
+}
+
 .search_icon {
     margin-left: 10px;
     font-size: 13px;

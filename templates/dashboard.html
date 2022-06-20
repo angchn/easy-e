@@ -33,7 +33,7 @@
                 <div class="favourites_heading">
                     <h2 class="dashboard_subheadings">favourited notes</h2>
                     <a href="{{url_for('notes')}}" class="notes_link">all notes<span class="arrow_icon_right"><i class="fa-solid fa-angle-right"></i></span></a>
-                    <a><button class="note_button">new note</button></a>
+                    <a href="{{url_for('new_note')}}"><button class="note_button">new note</button></a>
                 </div>
                 <div class="favourites_left">
                     <form method="POST">
@@ -44,7 +44,7 @@
                     {% endfor %}
                 </div>
                 <div class="favourites_right">
-                    <h3 class="subheadings_small">folders</h3>
+                    <h3 class="subheadings_small">subjects</h3>
                 </div>
             </div>
         </div>
