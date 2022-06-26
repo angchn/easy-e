@@ -76,22 +76,23 @@ def dashboard():
 @app.route("/notes")
 @login_required
 def notes():
-    notes = models.Notes.query.filter_by(user=current_user.id)
+    notes = db.session.query(models.Notes).filter_by(user=current_user.id)
     return render_template ("notes.html", name=current_user.name, notes=notes)
 
 
-@app.route("/new_note")
+@app.route("/new_note", methods=('GET', 'POST'))
 def new_note():
     form = forms.PostForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            notes = models.Notes(user=current_user.id, name=form.title.data, content=form.body.data)
-            form.title.data = ""
-            form.body.data = ""
+            body = request.form.get("body")
+            title = request.form.get("title")
+            notes = models.Notes(user=current_user.id, name=title, content=body)
             db.session.add(notes)
             db.session.commit()
-            flash("New note created!")
-    return render_template("new_note.html", form=form)
+            return redirect (url_for("notes"))
+    return render_template("new_note.html", name=current_user.name, form=form)
+    
 
 
 @app.route("/add_task", methods=('GET', 'POST'))

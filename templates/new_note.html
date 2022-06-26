@@ -27,11 +27,12 @@
     <br>
     <br>
     <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
-    <form method="POST" class="new_note_form">
+    <form method="POST" class="new_note_form" action="{{url_for('new_note')}}">
+        {{ form.csrf_token }}
         {{ form.title(id="new_note_title", placeholder="title") }}
         {{ form.body(rows=10) }}
-        <input type="submit">
+        <input type="submit" value="add">
     </form>
-    {{ ckeditor.load(pkg_type="standard") }}
+    {{ ckeditor.load(pkg_type="basic") }}
     {{ ckeditor.config(name='body') }}
 </div>
