@@ -31,7 +31,7 @@
         {{ form.csrf_token }}
         {{ form.title(id="new_note_title", placeholder="title") }}
         {{ form.body(rows=10) }}
-        <input type="submit" value="add">
+        <input type="submit" value="save" class="new_note_button">
     </form>
     {{ ckeditor.load(pkg_type="basic") }}
     {{ ckeditor.config(name='body') }}
