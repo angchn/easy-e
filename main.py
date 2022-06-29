@@ -70,14 +70,32 @@ def dashboard():
     incomplete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=False)
     complete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=True)
     notes = models.Notes.query.filter_by(user=current_user.id)
-    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, notes=notes)
+    folders = models.Folders.query.filter_by(user=current_user.id)
+    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, notes=notes, folders=folders)
 
 
 @app.route("/notes")
 @login_required
 def notes():
     notes = db.session.query(models.Notes).filter_by(user=current_user.id)
-    return render_template ("notes.html", name=current_user.name, notes=notes)
+    folders = db.session.query(models.Folders).filter_by(user=current_user.id)
+    return render_template ("notes.html", name=current_user.name, notes=notes, folders=folders)
+
+
+@app.route("/add_folder", methods=('GET', 'POST'))
+def add_folder():
+    if request.method == "POST":
+        folder_add = request.form.get("folder_add")
+        new_folder = models.Folders(name=folder_add, user=current_user.id)
+        db.session.add(new_folder)
+        db.session.commit()
+    return redirect (url_for("notes"))
+
+@app.route("/folder/<int:id>")
+def folder(id):
+    folders = db.session.query(models.Folders).filter_by(id=id)
+    notes = db.session.query(models.Notes).filter_by(user=current_user.id, folder=id)
+    return render_template ("folder.html", notes=notes, folders=folders)
 
 
 @app.route("/new_note", methods=('GET', 'POST'))

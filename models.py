@@ -1,11 +1,6 @@
 from main import db
 from flask_login import UserMixin
 
-note_subject = db.Table('note_subject',
-    db.Column('note_id', db.Integer, db.ForeignKey('notes.id')),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subjects.id'))
-)
-
 class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
@@ -45,15 +40,20 @@ class Todo(db.Model):
     def __repr__(self):
         return self.name
 
+class Folders(db.Model):
+    __tablename__ = "folders"
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
+    name = db.Column(db.String(50))
+
 class Notes(db.Model):
     __tablename__ = "notes"
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
     name = db.Column(db.String(50))
     favourite = db.Column(db.Boolean, default=False)
+    folder = db.Column(db.Integer, db.ForeignKey('folders.id'))
     content = db.Column(db.String())
-
-    subjects = db.relationship('Subjects', secondary=note_subject, backref='subjects')
 
     def __repr__(self):
         return self.name

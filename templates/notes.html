@@ -28,16 +28,22 @@
         <h1 class="welcome">{{ name }}'s</h1>
         <h1 class="welcome_name">notes</h1>
     </div>
-    <div class="subjects">
-        <h1 class="notes_subheading">subjects</h1>
-        {% for subject in subjects %}
-            <a class="subject_buttons"><button>{{ subject.subject_name }}</button></a>
+    <div class="folders">
+        <div class="folder_box">
+        <h1 class="notes_subheading">folders</h1>
+            <form action="{{url_for('add_folder')}}" method="POST">
+                <input type="text" name="folder_add" placeholder="new folder" class="new_folder">
+                <input type="submit" value="add" class="new_folder_button">
+            </form>
+        </div>
+        {% for folder in folders %}
+            <a class="folder_buttons" href="/folder/{{ folder.id }}"><button>{{ folder.name }}</button></a>
         {% endfor %}
     </div>
     
     <div class="notes">
     {% for note in notes %}
-        <li>{{ note.name }}</li>
+        <li>{{ note.name }} - {{ note.folder }}</li>
     {% endfor %}
     </div>
 

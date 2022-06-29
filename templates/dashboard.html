@@ -45,6 +45,11 @@
                 </div>
                 <div class="favourites_right">
                     <h3 class="subheadings_small">folders</h3>
+                    <div class="dashboard_folders">
+                    {% for folder in folders %}
+                        <li><a href="/folder/{{ folder.id }}">{{ folder.name }}</a></li>
+                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

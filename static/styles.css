@@ -611,6 +611,10 @@ input:focus {
     margin-bottom: -10px;
 }
 
+.dashboard_folders {
+    margin-top: 20px;
+}
+
 .notes_link {
     font-family: 'Inter', sans-serif;
     margin-left: 10px;
@@ -645,7 +649,7 @@ input:focus {
     color: #0d1b2a;
 }
 
-.subjects {
+.folders {
     margin-bottom: 20px;
     background-color: white;
     padding: 20px;
@@ -653,7 +657,7 @@ input:focus {
     padding-top: 5px;
 }
 
-.subject_buttons button {
+.folder_buttons button {
     font-family: 'Inter', sans-serif;
     padding: 15px;
     margin-right: 10px;
