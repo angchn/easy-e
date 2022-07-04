@@ -20,43 +20,48 @@ import forms
 from forms import LoginForm, RegisterForm
 
 
+# Flask login (gets user_id)
 @login_manager.user_loader
 def load_user(user_id):
     return models.User.query.get(int(user_id))
 
 
+# route renders home page
 @app.route("/")
 def home():
     return render_template ("home.html", page_title="Home")
 
 
+# route renders login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    form = LoginForm()
+    form = LoginForm() # retrieves login form from forms.py
     if form.validate_on_submit(): 
         user = models.User.query.filter_by(user_name=form.username.data).first()
-        if user:
+        if user: # checks user input with password hash stored in database
             if check_password_hash(user.user_password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                flash ("Login successful!", 'login')
+                flash ("Login successful!", 'login') # flashes a message if successful
                 return redirect (url_for("dashboard"))
-        return "<h1>Invalid username or password.</h1>"
+        return "<h1>Invalid username or password.</h1>" # redirects user if password entered is wrong
     return render_template ("login.html", form=form)
 
 
+# route renders signup page
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    form = RegisterForm()
+    form = RegisterForm() # retrieves signup form from forms.py
     if form.validate_on_submit(): 
-        hashed_password = generate_password_hash(form.password.data, method="sha256")
-        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password)
+        hashed_password = generate_password_hash(form.password.data, method="sha256") # hashes user password
+        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password) # adds user to database
         db.session.add(new_user)
-        db.session.commit()
-        flash ("Sign up successful!", 'login')
-        return redirect (url_for("login"))
+        db.session.commit() 
+        flash ("Sign up successful!", 'login') # flashes a message if successful
+        return redirect (url_for("login")) # redirects user to login page if signup is successful
     return render_template ("signup.html", form=form)
 
 
+# route for user to logout
 @app.route("/logout")
 @login_required
 def logout():
