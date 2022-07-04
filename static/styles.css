@@ -647,6 +647,7 @@ input:focus {
     font-family: 'Outfit', sans-serif;
     font-weight: 200;
     color: #0d1b2a;
+    width: fit-content;
 }
 
 .folders {
@@ -670,10 +671,25 @@ input:focus {
     transition-duration: 0.2s;
 }
 
-.subject_buttons button:hover {
+.folder_buttons button:hover {
     color: #f6f5f0;
     background: #778da9;
 }
+
+.folder_box {
+    display: flex;
+    vertical-align: center;
+}
+
+.folder_box form {
+    width: fit-content;
+    margin-left: 40px;
+    margin-top: 25px;
+}
+
+.new_folder{width: 250px;}
+
+.new_folder_button {width: 60px;}
 
 .arrow_icon_left {
     font-size: 11px;
@@ -761,7 +777,7 @@ input:focus {
     margin-bottom: -10px;
 }
 
-.todo_textbox, .notes_search {
+.todo_textbox, .notes_search, .new_folder {
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;
     padding: 5px;
@@ -779,7 +795,7 @@ input:focus {
     font-weight: normal;
 }
 
-.todo_button, .note_button {
+.todo_button, .note_button, .new_folder_button {
     color: #778da9;
     border-radius: 20px;
     padding: 10px;

@@ -30,9 +30,9 @@
     </div>
     <div class="folders">
         <div class="folder_box">
-        <h1 class="notes_subheading">folders</h1>
+            <h1 class="notes_subheading">folders</h1>
             <form action="{{url_for('add_folder')}}" method="POST">
-                <input type="text" name="folder_add" placeholder="new folder" class="new_folder">
+                <input type="text" name="folder_add" placeholder="new folder" class="new_folder" required>
                 <input type="submit" value="add" class="new_folder_button">
             </form>
         </div>
