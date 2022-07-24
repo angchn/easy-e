@@ -1,28 +1,7 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5b4a218e91.js" crossorigin="anonymous"></script>
-    <title>{{ name }}'s dashboard | easy.e</title>
-</head> 
+{% extends "layout_user.html" %}
+{% block title %}notes{% endblock %}
 
-<nav class="navbar">
-    <a id="home_button">easy.e</a>
-    <a class="dashboard_button" href="{{url_for('dashboard')}}">dashboard</a>
-    <a class="nav_button" href="{{url_for('logout')}}">logout</a>
-    <div id="paper_dropdown">
-        <button class="dropdown_button" href="{{url_for('papers')}}">past papers<i class="arrow down"></i></button>
-        <div id="dropdown_content">
-            <a href="{{url_for('english')}}">english</a>
-            <a href="{{url_for('maths')}}">maths</a>
-            <a href="{{url_for('physics')}}">physics</a>
-            <a href="{{url_for('chemistry')}}">chemistry</a>
-            <a href="{{url_for('biology')}}">biology</a>
-        </div>
-    </div>
-</nav>
-
+{% block content %}
 <div class="page">
     <div class="notes_header">
         <h1 class="welcome">{{ name }}'s</h1>
@@ -43,8 +22,9 @@
     
     <div class="notes">
     {% for note in notes %}
-        <li>{{ note.name }} - {{ note.folder }}</li>
+        <li><a href="/note/{{ note.id }}">{{ note.name }} - {{ note.folder }}</a></li>
     {% endfor %}
     </div>
 
 </div>
+{% endblock %}

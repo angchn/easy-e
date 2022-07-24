@@ -1,3 +1,4 @@
+from doctest import NORMALIZE_WHITESPACE
 from re import I
 from flask import Flask, render_template, abort, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
@@ -69,16 +70,18 @@ def logout():
     return redirect (url_for("home"))
 
 
+# route renders user dashboard
 @app.route("/dashboard")
 @login_required
 def dashboard():
     incomplete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=False)
     complete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=True)
-    notes = models.Notes.query.filter_by(user=current_user.id)
+    notes = models.Notes.query.filter_by(user=current_user.id, favourite=True)
     folders = models.Folders.query.filter_by(user=current_user.id)
     return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, notes=notes, folders=folders)
 
 
+# route renders all notes page
 @app.route("/notes")
 @login_required
 def notes():
@@ -87,6 +90,15 @@ def notes():
     return render_template ("notes.html", name=current_user.name, notes=notes, folders=folders)
 
 
+# route renders specific note page
+@app.route("/note/<int:id>")
+@login_required
+def note(id):
+    notes = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
+    return render_template("note.html", notes=notes)
+
+
+# route for user to add new folder
 @app.route("/add_folder", methods=('GET', 'POST'))
 def add_folder():
     if request.method == "POST":
@@ -96,13 +108,17 @@ def add_folder():
         db.session.commit()
     return redirect (url_for("notes"))
 
+
+# route renders specific folder page
 @app.route("/folder/<int:id>")
+@login_required
 def folder(id):
-    folders = db.session.query(models.Folders).filter_by(id=id)
+    folders = db.session.query(models.Folders).filter_by(user=current_user.id, id=id)
     notes = db.session.query(models.Notes).filter_by(user=current_user.id, folder=id)
-    return render_template ("folder.html", notes=notes, folders=folders)
+    return render_template ("folder.html", name=current_user.name, notes=notes, folders=folders)
 
 
+# route renders new note page
 @app.route("/new_note", methods=('GET', 'POST'))
 def new_note():
     form = forms.PostForm()
@@ -117,7 +133,7 @@ def new_note():
     return render_template("new_note.html", name=current_user.name, form=form)
     
 
-
+# route for user to add todo task
 @app.route("/add_task", methods=('GET', 'POST'))
 def add_task():
     if request.method == "POST":
@@ -128,6 +144,7 @@ def add_task():
     return redirect (url_for("dashboard"))
 
 
+# route for user to delete task
 @app.route("/delete_task/<int:id>")
 def delete_task(id):
     task_delete = db.session.query(models.Todo).filter_by(id=id).first()
@@ -136,6 +153,7 @@ def delete_task(id):
     return redirect (url_for("dashboard"))
 
 
+# route for user to mark task complete
 @app.route("/complete_task/<int:id>")
 def complete_task(id):
     task = db.session.query(models.Todo).filter_by(id=id).first()
@@ -144,6 +162,7 @@ def complete_task(id):
     return redirect (url_for("dashboard"))
 
 
+# route for user to un-mark task complete
 @app.route("/redo_complete_task/<int:id>")
 def redo_complete_task(id):
     task = db.session.query(models.Todo).filter_by(id=id).first()
@@ -151,13 +170,13 @@ def redo_complete_task(id):
     db.session.commit()
     return redirect (url_for("dashboard"))
 
-
+# route renders past papers page
 @app.route("/past_papers")
 def papers():
     papers = models.Paper.query.all()
     return render_template ("papers.html", page_title="Past_Papers", papers=papers)
 
-
+# route renders 
 @app.route("/past_papers_english")
 def english():
     epapers = models.Paper.query.filter_by(subject=1)

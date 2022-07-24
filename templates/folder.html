@@ -1,6 +1,16 @@
-{% for folder in folders %}
-    <h1>{{ folder.name }}</h1>
-{% endfor %}
-{% for note in notes %}
-    <li>{{ note.name }}</li>
-{% endfor %}
+{% extends "layout_user.html" %}
+{% block title %}folder{% endblock %}
+
+{% block content %}
+<div class="page">
+    {% for folder in folders %}
+    <div class="notes_header">
+        <h1 class="welcome">folder</h1>
+        <h1 class="welcome_name">{{ folder.name }}</h1>
+    </div>
+    {% endfor %}
+    {% for note in notes %}
+        <li><a href="/note/{{ note.id}}">{{ note.name }}</a></li>
+    {% endfor %}
+</div>
+{% endblock %}

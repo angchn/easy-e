@@ -1,0 +1,28 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5b4a218e91.js" crossorigin="anonymous"></script>
+    <title>{{ name }}'s {% block title %}{% endblock %} | easy.e</title>
+</head> 
+
+<nav class="navbar">
+    <a id="home_button">easy.e</a>
+    <a class="dashboard_button" href="{{url_for('dashboard')}}">dashboard</a>
+    <a class="nav_button" href="{{url_for('logout')}}">logout</a>
+    <div id="paper_dropdown">
+        <button class="dropdown_button" href="{{url_for('papers')}}">past papers<i class="arrow down"></i></button>
+        <div id="dropdown_content">
+            <a href="{{url_for('english')}}">english</a>
+            <a href="{{url_for('maths')}}">maths</a>
+            <a href="{{url_for('physics')}}">physics</a>
+            <a href="{{url_for('chemistry')}}">chemistry</a>
+            <a href="{{url_for('biology')}}">biology</a>
+        </div>
+    </div>
+</nav>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
