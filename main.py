@@ -131,6 +131,15 @@ def new_note():
             db.session.commit()
             return redirect (url_for("notes"))
     return render_template("new_note.html", name=current_user.name, form=form)
+
+
+# route for user to favourite note
+@app.route("/favourite_note/<int:id>")
+def favourite_note(id):
+    note = db.session.query(models.Notes).filter_by(id=id).first()
+    note.favourite = True
+    db.session.commit()
+    return redirect (url_for("notes"))
     
 
 # route for user to add todo task

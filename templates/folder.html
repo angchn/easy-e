@@ -10,7 +10,9 @@
     </div>
     {% endfor %}
     {% for note in notes %}
-        <li><a href="/note/{{ note.id}}">{{ note.name }}</a></li>
+        <div class="notes_list">
+            <li class="notes_list_item"><span class="notes_icon"><i class="fa-regular fa-file-lines"></i></span><a href="/note/{{ note.id}}">{{ note.name }}</a></li>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

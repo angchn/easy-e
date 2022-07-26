@@ -691,6 +691,39 @@ input:focus {
 
 .new_folder_button {width: 60px;}
 
+.notes_list {
+    list-style: none;
+    width: 80%;
+    margin: auto;
+    vertical-align: center;
+    font-size: 16px;
+}
+
+.notes_icon {
+    color: #485b72;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.notes_list_folder { font-weight: bold; }
+
+.notes_list_item {
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 10px;
+}
+
+.notes_list_item a {
+    text-decoration: none;
+    color: #485b72;
+}
+
+.notes_list_item a:hover {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.notes_list_item:visited { color: #485b72; }
+
 .arrow_icon_left {
     font-size: 11px;
     margin-right: 8px;
@@ -709,7 +742,7 @@ input:focus {
 .back_link:visited {color: #778da9}
 
 .new_note_form {
-    margin-top: 50px;
+    margin-top: 30px;
     height: 63%;
     font-family: 'Inter', sans-serif;
     border: none;
