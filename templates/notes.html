@@ -23,13 +23,27 @@
     <div class="notes">
         <div class="notes_sections">
             <h1 class="dashboard_subheadings">favourited notes</h1>
-            {% for note in notes %}
+            {% for note in favourite_notes %}
             {% for folder in folders %}
                     <div class="notes_list">
-                        <li class="notes_list_item"><span class="notes_icon">
-                            <a href="/favourite_note/{{ note.id }}"><i class="fa-solid fa-star"></i></a>
-                            <i class="fa-regular fa-file-lines"></i></span><a href="/note/{{ note.id }}">
-                            <span class="notes_list_folder">{{ folder.name }} |</span> {{ note.name }}</a>
+                        <li class="notes_list_item">
+                            <span class="favourite_icon"><a href="/favourite_note/{{ note.id }}"><i class="fa-solid fa-star"></i></a></span>
+                            <span class="notes_icon"><i class="fa-regular fa-file-lines"></i></span>
+                            <a href="/note/{{ note.id }}"><span class="notes_list_folder">{{ folder.name }} |</span> {{ note.name }}</a>
+                        </li>
+                    </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+        <br><hr><br>
+        <div class="notes_sections">
+            {% for note in other_notes %}
+            {% for folder in folders %}
+                    <div class="notes_list">
+                        <li class="notes_list_item">
+                            <span class="favourite_icon"><a href="/favourite_note/{{ note.id }}"><i class="fa-regular fa-star"></i></a></span>
+                            <span class="notes_icon"><i class="fa-regular fa-file-lines"></i></span>
+                            <a href="/note/{{ note.id }}"><span class="notes_list_folder">{{ folder.name }} |</span> {{ note.name }}</a>
                         </li>
                     </div>
             {% endfor %}

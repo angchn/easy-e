@@ -1,4 +1,17 @@
+{% extends "layout_user.html" %}
+{% block title %}note{% endblock %}
+
+{% block content %}
 {% for note in notes %}
-    <h1>{{ note.name }}</h1>
-    {{ note.content }}
+<div class="page">
+    <br>
+    <br>
+    <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
+    <div class="notes_header">
+        <h1 class="welcome">note</h1>
+        <h1 class="welcome_name">{{ note.name }}</h1>
+    </div>
+            {{ note.content }}
+</div>
 {% endfor %}
+{% endblock %}

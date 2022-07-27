@@ -3,6 +3,9 @@
 
 {% block content %}
 <div class="page">
+    <br>
+    <br>
+    <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
     {% for folder in folders %}
     <div class="notes_header">
         <h1 class="welcome">folder</h1>

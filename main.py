@@ -85,9 +85,10 @@ def dashboard():
 @app.route("/notes")
 @login_required
 def notes():
-    notes = db.session.query(models.Notes).filter_by(user=current_user.id)
+    favourite_notes = db.session.query(models.Notes).filter_by(user=current_user.id, favourite=True)
+    other_notes = db.session.query(models.Notes).filter_by(user=current_user.id, favourite=False)
     folders = db.session.query(models.Folders).filter_by(user=current_user.id)
-    return render_template ("notes.html", name=current_user.name, notes=notes, folders=folders)
+    return render_template ("notes.html", name=current_user.name, favourite_notes=favourite_notes, other_notes=other_notes, folders=folders)
 
 
 # route renders specific note page
@@ -95,7 +96,7 @@ def notes():
 @login_required
 def note(id):
     notes = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
-    return render_template("note.html", notes=notes)
+    return render_template("note.html", name=current_user.name, notes=notes)
 
 
 # route for user to add new folder
@@ -140,7 +141,16 @@ def favourite_note(id):
     note.favourite = True
     db.session.commit()
     return redirect (url_for("notes"))
-    
+
+
+# route for user to un-favourite note
+@app.route("/unfavourite_note/<int:id>")
+def unfavourite_note(id):
+    note = db.session.query(models.Notes).filter_by(id=id).first()
+    note.favourite = False
+    db.session.commit()
+    return redirect (url_for("notes"))
+
 
 # route for user to add todo task
 @app.route("/add_task", methods=('GET', 'POST'))
@@ -178,6 +188,7 @@ def redo_complete_task(id):
     task.complete = False
     db.session.commit()
     return redirect (url_for("dashboard"))
+
 
 # route renders past papers page
 @app.route("/past_papers")

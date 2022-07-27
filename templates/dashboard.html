@@ -19,15 +19,21 @@
                         <input type="text" placeholder="search notes" class="notes_search"><span class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </form>
                     {% for note in notes %}
-                        <li>{{ note.name }}</li>
+                    <div class="notes_list">
+                        <span class="notes_icon"><i class="fa-regular fa-file-lines"></i></span>
+                        <li class="notes_list_item"><a href="/note/{{ note.id }}">{{ note.name }}</a></li>
+                    </div>
                     {% endfor %}
                 </div>
                 <div class="favourites_right">
                     <h3 class="subheadings_small">folders</h3>
                     <div class="dashboard_folders">
-                    {% for folder in folders %}
-                        <li><a href="/folder/{{ folder.id }}">{{ folder.name }}</a></li>
-                    {% endfor %}
+                        {% for folder in folders %}
+                        <div class="notes_list">
+                            <span class="notes_icon"><i class="fa-regular fa-folder"></i></span>
+                            <li class="notes_list_item"><a href="/folder/{{ folder.id }}">{{ folder.name }}</a></li>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
