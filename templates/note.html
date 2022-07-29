@@ -10,8 +10,9 @@
     <div class="notes_header">
         <h1 class="welcome">note</h1>
         <h1 class="welcome_name">{{ note.name }}</h1>
+        <h3 class="dashboard_subheadings"><em>{{ note.folder }}</em></h3>
     </div>
-            {{ note.content }}
+            <code>{{ note.content }}</code>
 </div>
 {% endfor %}
 {% endblock %}

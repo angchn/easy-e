@@ -584,6 +584,10 @@ input:focus {
     display: inline-block;
 }
 
+.dashboard_subheadings em {
+    color: #485b72;
+}
+
 .todo {
     background-color: white;
     border-radius: 25px;
