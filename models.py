@@ -46,6 +46,9 @@ class Folders(db.Model):
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
     name = db.Column(db.String(50))
 
+    def __repr__(self):
+        return self.name
+
 class Notes(db.Model):
     __tablename__ = "notes"
     id = db.Column(db.Integer, primary_key=True)
@@ -54,6 +57,8 @@ class Notes(db.Model):
     favourite = db.Column(db.Boolean, default=False)
     folder = db.Column(db.Integer, db.ForeignKey('folders.id'))
     content = db.Column(db.String())
+
+    folder_name = db.relationship('Folders', backref='folder')
 
     def __repr__(self):
         return self.name

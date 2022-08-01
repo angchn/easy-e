@@ -10,9 +10,11 @@
     <div class="notes_header">
         <h1 class="welcome">note</h1>
         <h1 class="welcome_name">{{ note.name }}</h1>
-        <h3 class="dashboard_subheadings"><em>{{ note.folder }}</em></h3>
+        <h3 class="dashboard_subheadings"><em>{{ note.folder_name }}</em></h3>
     </div>
-            <code>{{ note.content }}</code>
+    <div class="note_background">
+        <p> {{ note.content|safe }}</p>
+    </div>
 </div>
 {% endfor %}
 {% endblock %}

@@ -654,6 +654,17 @@ input:focus {
     width: fit-content;
 }
 
+.note_background {
+    background-color: white;
+    border-radius: 25px;
+    width: 90%;
+    font-family: 'Inter', sans-serif;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
 .folders {
     margin-bottom: 20px;
     background-color: white;

@@ -96,7 +96,6 @@ def notes():
 @login_required
 def note(id):
     notes = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
-    folder = db.session.query(models.Notes).filter_by()
     return render_template("note.html", name=current_user.name, notes=notes)
 
 
