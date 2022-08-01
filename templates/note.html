@@ -11,6 +11,14 @@
         <h1 class="welcome">note</h1>
         <h1 class="welcome_name">{{ note.name }}</h1>
         <h3 class="dashboard_subheadings"><em>{{ note.folder_name }}</em></h3>
+        <div class="folder_dropdown">
+            <button class="folder_dropdown_button">change folder</button>
+            <div class="folder_dropdown_content">
+                {% for folder in folders %}
+                <a>{{ folder.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     <div class="note_background">
         <p> {{ note.content|safe }}</p>

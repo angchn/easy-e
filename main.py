@@ -96,8 +96,14 @@ def notes():
 @login_required
 def note(id):
     notes = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
-    return render_template("note.html", name=current_user.name, notes=notes)
+    folders = db.session.query(models.Folders).filter_by(user=current_user.id)
+    return render_template ("note.html", name=current_user.name, notes=notes, folders=folders)
 
+
+@app.route("/change_folder/<int:id>")
+def change_folder(id):
+    current_folder = db.session.query(models.Folders).filter_by(id=id).first()
+    return redirect (url_for("notes"))
 
 # route for user to add new folder
 @app.route("/add_folder", methods=('GET', 'POST'))
