@@ -10,12 +10,15 @@
     <div class="notes_header">
         <h1 class="welcome">note</h1>
         <h1 class="welcome_name">{{ note.name }}</h1>
-        <h3 class="dashboard_subheadings"><em>{{ note.folder_name }}</em></h3>
+        <h3 class="dashboard_subheadings">
+            <span class="notes_icon" style="font-size:18px;"><i class="fa-regular fa-folder"></i></span>
+            <em>{{ note.folder_name }}</em>
+        </h3>
         <div class="folder_dropdown">
             <button class="folder_dropdown_button">change folder</button>
             <div class="folder_dropdown_content">
                 {% for folder in folders %}
-                <a>{{ folder.name }}</a>
+                <a href="/change_folder/{{ folder.id}}/{{ note.id }}">{{ folder.name }}</a>
                 {% endfor %}
             </div>
         </div>
