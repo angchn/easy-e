@@ -678,7 +678,7 @@ input:focus {
     display: none;
     position: absolute;
     margin-left: 0px;
-    margin-top: 3px;
+    margin-top: 1.5px;
     background: white;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -693,7 +693,14 @@ input:focus {
 .folder_dropdown_content a {
     display: block;
     margin-bottom: 10px;
+    margin-top: 10px;
+    text-decoration: none;
 }
+
+.folder_dropdown_content a:hover {font-weight: bold;}
+
+.folder_dropdown_content a:visited {
+    color: #778da9;}
 
 .folder_dropdown_button:hover {
     background-color: #778da9;
@@ -728,7 +735,7 @@ input:focus {
     margin-right: 10px;
     font-size: 16px;
     border-radius: 30px;
-    border: none;
+    border: 1px solid #778da9;
     background: #f6f5f0;
     color: #778da9;
     cursor: pointer;

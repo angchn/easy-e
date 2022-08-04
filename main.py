@@ -100,10 +100,12 @@ def note(id):
     return render_template ("note.html", name=current_user.name, notes=notes, folders=folders)
 
 
-@app.route("/change_folder/<int:folder>/<int:id>")
-def change_folder(folder,id):
-    current_folder = db.session.query(models.Notes).filter_by(id=id).first()
-    return redirect ("/note/<int:id>")
+@app.route("/change_folder/<int:note_id>/<int:folder_id>")
+def change_folder(note_id,folder_id):
+    current_note = db.session.query(models.Notes).filter_by(id=note_id).first()
+    current_note.folder = folder_id
+    db.session.commit()
+    return redirect ("/note/{}".format(note_id))
 
 
 # route for user to add new folder
