@@ -15,13 +15,14 @@
             <em>{{ note.folder_name }}</em>
         </h3>
         <div class="folder_dropdown">
-            <button class="folder_dropdown_button">change folder</button>
+            <button class="folder_dropdown_button"><span><i class="fa-solid fa-folder-open"></i></span></button>
             <div class="folder_dropdown_content">
                 {% for folder in folders %}
                 <a href="/change_folder/{{ note.id }}/{{ folder.id }}">{{ folder.name }}</a>
                 {% endfor %}
             </div>
         </div>
+        <a class="edit_note_button" href="/edit_note"><span><i class="fa-solid fa-file-pen"></i></span></a>
     </div>
     <div class="note_background">
         <p> {{ note.content|safe }}</p>
