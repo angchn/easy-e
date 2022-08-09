@@ -9,7 +9,7 @@
     <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
     <div class="notes_header">
         <h1 class="welcome">note</h1>
-        <h1 class="welcome_name">{{ note.name }}</h1>
+        <h1 class="welcome_name">{{ note.title }}</h1>
         <h3 class="dashboard_subheadings">
             <span class="notes_icon" style="font-size:18px;"><i class="fa-regular fa-folder"></i></span>
             <em>{{ note.folder_name }}</em>
@@ -22,7 +22,7 @@
                 {% endfor %}
             </div>
         </div>
-        <a class="edit_note_button" href="/edit_note"><span><i class="fa-solid fa-file-pen"></i></span></a>
+        <a class="edit_note_button" href="/edit_note/{{ note.id }}"><span><i class="fa-solid fa-file-pen"></i></span></a>
     </div>
     <div class="note_background">
         <p> {{ note.content|safe }}</p>

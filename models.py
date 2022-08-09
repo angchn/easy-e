@@ -53,7 +53,7 @@ class Notes(db.Model):
     __tablename__ = "notes"
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer(), db.ForeignKey('user_login.id'))
-    name = db.Column(db.String(50))
+    title = db.Column(db.String(50))
     favourite = db.Column(db.Boolean, default=False)
     folder = db.Column(db.Integer, db.ForeignKey('folders.id'))
     content = db.Column(db.String())

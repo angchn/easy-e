@@ -1,18 +1,20 @@
 {% extends "layout_user.html" %}
-{% block title %}new note{% endblock %}
+{% block title %}note editor{% endblock %}
 
 {% block content %}
+{% for note in note %}
     <div class="page">
         <br>
         <br>
-        <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
-        <form method="POST" class="new_note_form" action="{{url_for('new_note')}}">
+        <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="/note/{{ note.id }}" class="back_link">{{ note.title }}</a>
+        <form method="POST" class="new_note_form" action="/edit_note/{{ note.id }}">
             {{ form.csrf_token }}
-            {{ form.title(id="new_note_title", placeholder="title") }}
-            {{ form.body(rows=10) }}
+            {{ form.title(id="new_note_title") }}
+            {{ form.content(rows=10) }}
             <input type="submit" value="save" class="new_note_button">
         </form>
         {{ ckeditor.load(pkg_type="basic") }}
-        {{ ckeditor.config(name='body') }}
+        {{ ckeditor.config(name='content') }}
     </div>
+{% endfor %}
 {% endblock %}

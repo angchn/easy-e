@@ -109,18 +109,17 @@ def change_folder(note_id,folder_id):
     return redirect ("/note/{}".format(note_id))
 
 
-@app.route("/edit_note")
-def edit_note():
+@app.route("/edit_note/<int:id>", methods=('GET', 'POST'))
+def edit_note(id):
+    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
     form = forms.PostForm()
-    if request.method == "POST":
-        if form.validate_on_submit():
-            body = request.form.get("body")
-            title = request.form.get("title")
-            notes = models.Notes(user=current_user.id, name=title, content=body)
-            db.session.add(notes)
-            db.session.commit()
-            return redirect (url_for("notes"))
-    return render_template ("note_edit.html", form=form)
+    if form.validate_on_submit():
+        note.title = request.form.get("title")
+        note.content = request.form.get("content")
+        db.session.add(note)
+        db.session.commit()
+        return redirect ("/note/{}".format(id))
+    return render_template ("note_edit.html", name=current_user.name, form=form, note=note)
 
 
 # route for user to add new folder
@@ -149,9 +148,9 @@ def new_note():
     form = forms.PostForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            body = request.form.get("body")
+            content = request.form.get("content")
             title = request.form.get("title")
-            notes = models.Notes(user=current_user.id, name=title, content=body)
+            notes = models.Notes(user=current_user.id, title=title, content=content)
             db.session.add(notes)
             db.session.commit()
             return redirect (url_for("notes"))
