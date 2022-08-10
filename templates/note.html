@@ -23,6 +23,7 @@
             </div>
         </div>
         <a class="edit_note_button" href="/edit_note/{{ note.id }}"><span><i class="fa-solid fa-file-pen"></i></span></a>
+        <a href="/favourite_note/{{ note.id }}">favourite</a>
     </div>
     <div class="note_background">
         <p> {{ note.content|safe }}</p>

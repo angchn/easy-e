@@ -2,7 +2,6 @@
 {% block title %}note editor{% endblock %}
 
 {% block content %}
-{% for note in note %}
     <div class="page">
         <br>
         <br>
@@ -10,11 +9,10 @@
         <form method="POST" class="new_note_form" action="/edit_note/{{ note.id }}">
             {{ form.csrf_token }}
             {{ form.title(id="new_note_title") }}
-            {{ form.content(rows=10) }}
+            {{ form.content() }}
             <input type="submit" value="save" class="new_note_button">
         </form>
         {{ ckeditor.load(pkg_type="basic") }}
         {{ ckeditor.config(name='content') }}
     </div>
-{% endfor %}
 {% endblock %}

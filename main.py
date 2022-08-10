@@ -111,15 +111,18 @@ def change_folder(note_id,folder_id):
 
 @app.route("/edit_note/<int:id>", methods=('GET', 'POST'))
 def edit_note(id):
-    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
+    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id).first()
     form = forms.PostForm()
+    note_content = note.content
+    form.title.data = note.title
+    form.content.data = note_content
     if form.validate_on_submit():
         note.title = request.form.get("title")
         note.content = request.form.get("content")
         db.session.add(note)
         db.session.commit()
         return redirect ("/note/{}".format(id))
-    return render_template ("note_edit.html", name=current_user.name, form=form, note=note)
+    return render_template ("note_edit.html", name=current_user.name, form=form, note=note, note_content=note_content)
 
 
 # route for user to add new folder
