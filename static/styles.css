@@ -83,6 +83,7 @@ body {
     font-weight: 300;
     margin-top: -50px;
     user-select: none;
+    color: #485b72;
 }
 
 .home_papers {
@@ -569,9 +570,8 @@ input:focus {
     height: 25vh;
     width: 90%;
     object-fit: cover;
-    border-radius: 25px;
-    margin-top: -100px;
-    padding-top: 0px;
+    float: right;
+    margin-bottom: 0;
 }
 
 .dashboard_subheadings {

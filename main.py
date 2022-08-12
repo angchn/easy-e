@@ -42,7 +42,7 @@ def login():
         if user: # checks user input with password hash stored in database
             if check_password_hash(user.user_password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                flash ("Login successful!", 'login') # flashes a message if successful
+                flash ("Login successful!", 'user') # flashes a message if successful
                 return redirect (url_for("dashboard"))
         return "<h1>Invalid username or password.</h1>" # redirects user if password entered is wrong
     return render_template ("login.html", form=form)
@@ -57,7 +57,7 @@ def signup():
         new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password) # adds user to database
         db.session.add(new_user)
         db.session.commit() 
-        flash ("Sign up successful!", 'login') # flashes a message if successful
+        flash ("Sign up successful!", 'user') # flashes a message if successful
         return redirect (url_for("login")) # redirects user to login page if signup is successful
     return render_template ("signup.html", form=form)
 
