@@ -63,6 +63,19 @@ body {
     color: #0d1b2a; 
 }
 
+.flash_message {
+    width: 70vw;
+    margin: auto;
+}
+
+.flash_message pre {
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
 #header{
     text-align: center;
     padding-top: 175px;
@@ -83,7 +96,7 @@ body {
     font-weight: 300;
     margin-top: -50px;
     user-select: none;
-    color: #485b72;
+    color: #0d1b2a;
 }
 
 .home_papers {

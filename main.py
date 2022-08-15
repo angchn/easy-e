@@ -106,6 +106,7 @@ def change_folder(note_id,folder_id):
     current_note = db.session.query(models.Notes).filter_by(id=note_id).first()
     current_note.folder = folder_id
     db.session.commit()
+    flash ("Folder successfully changed!", 'note')
     return redirect ("/note/{}".format(note_id))
 
 
