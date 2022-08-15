@@ -4,7 +4,6 @@
 {% block content %}
     <div class="page">
         <br>
-        <br>
         <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="/note/{{ note.id }}" class="back_link">{{ note.title }}</a>
         <form method="POST" class="new_note_form" action="/edit_note/{{ note.id }}">
             {{ form.csrf_token }}

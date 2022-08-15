@@ -4,9 +4,10 @@
 
 {% block content %}
 
-{% with messages = get_flashed_messages() %}
+<br>
+{% with messages = get_flashed_messages(with_categories=true) %}
 {% if messages %}
-    {% for message in messages %}
+    {% for category, message in messages %}
             <div class="flash_message">
                 <pre>{{ message }}</pre>
             </div>
@@ -17,7 +18,6 @@
 {% for note in notes %}
 <div class="page">
     <br>
-    <br>
     <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
     <div class="notes_header">
         <h1 class="welcome">note</h1>
@@ -27,7 +27,7 @@
             <em>{{ note.folder_name }}</em>
         </h3>
         <div class="folder_dropdown">
-            <button class="folder_dropdown_button"><span><i class="fa-solid fa-folder-open"></i></span></button>
+            <button class="folder_dropdown_button">change folder</button>
             <div class="folder_dropdown_content">
                 {% for folder in folders %}
                 <a href="/change_folder/{{ note.id }}/{{ folder.id }}">{{ folder.name }}</a>

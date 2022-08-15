@@ -74,6 +74,7 @@ body {
     padding: 10px;
     border-radius: 25px;
     font-size: 14px;
+    padding-left: 20px;
 }
 
 #header{
@@ -865,6 +866,7 @@ input:focus {
     font-family: 'Inter', sans-serif;
     border: none;
 }
+
 
 #new_note_title {
     font-size: 24px;

@@ -1,6 +1,7 @@
 from main import db
 from flask_login import UserMixin
 
+
 class Paper(db.Model):
     __tablename__ = "past_papers"
     id = db.Column(db.Integer, primary_key=True)
@@ -12,6 +13,7 @@ class Paper(db.Model):
     def __repr__(self):
         return self.paper_file 
 
+
 class Subjects(db.Model):
     __tablename__ = "subjects"
     id = db.Column(db.Integer, primary_key=True)
@@ -19,6 +21,7 @@ class Subjects(db.Model):
 
     def __repr__(self):
         return self.subject_name
+
 
 class User(UserMixin, db.Model):
     __tablename__ = "user_login"
@@ -30,6 +33,7 @@ class User(UserMixin, db.Model):
 
     todo = db.relationship ("Todo", backref='todo')
 
+
 class Todo(db.Model):
     __tablename__ = "todo"
     id = db.Column(db.Integer, primary_key=True)
@@ -40,6 +44,7 @@ class Todo(db.Model):
     def __repr__(self):
         return self.name
 
+
 class Folders(db.Model):
     __tablename__ = "folders"
     id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +53,7 @@ class Folders(db.Model):
 
     def __repr__(self):
         return self.name
+
 
 class Notes(db.Model):
     __tablename__ = "notes"

@@ -150,6 +150,7 @@ def folder(id):
 @app.route("/new_note", methods=('GET', 'POST'))
 def new_note():
     form = forms.PostForm()
+    folders = db.session.query(models.Folders).filter_by(user=current_user.id)
     if request.method == "POST":
         if form.validate_on_submit():
             content = request.form.get("content")
@@ -158,7 +159,7 @@ def new_note():
             db.session.add(notes)
             db.session.commit()
             return redirect (url_for("notes"))
-    return render_template("new_note.html", name=current_user.name, form=form)
+    return render_template("new_note.html", name=current_user.name, form=form, folders=folders)
 
 
 # route for user to favourite note
