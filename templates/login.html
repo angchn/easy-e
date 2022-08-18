@@ -10,6 +10,16 @@
     <a id="home_button" href="{{url_for('home')}}">easy.e</a>
 </nav>
 
+{% with messages = get_flashed_messages(with_categories=true, category_filter='user') %}
+{% if messages %}
+    {% for category, message in messages %}
+            <div class="flash_message">
+                <pre>{{ message }}</pre>
+            </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <div class="login_block">
     <form class="login" method="POST" action="/login" autocomplete="off">
         <div class="login_header">

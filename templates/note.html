@@ -4,8 +4,7 @@
 
 {% block content %}
 
-<br>
-{% with messages = get_flashed_messages(with_categories=true) %}
+{% with messages = get_flashed_messages(with_categories=true, category_filter='note') %}
 {% if messages %}
     {% for category, message in messages %}
             <div class="flash_message">
@@ -17,6 +16,9 @@
 
 {% for note in notes %}
 <div class="page">
+    <br>
+    <br>
+    <br>
     <br>
     <span class="arrow_icon_left"><i class="fa-solid fa-angle-left"></i></span><a href="{{url_for('notes')}}" class="back_link">back to notes</a>
     <div class="notes_header">

@@ -44,7 +44,7 @@ def login():
                 login_user(user, remember=form.remember.data)
                 flash ("Login successful!", 'user') # flashes a message if successful
                 return redirect (url_for("dashboard"))
-        return "<h1>Invalid username or password.</h1>" # redirects user if password entered is wrong
+        flash("Invalid username or password.", 'user')  # redirects user if password entered is wrong
     return render_template ("login.html", form=form)
 
 
@@ -53,12 +53,17 @@ def login():
 def signup():
     form = RegisterForm() # retrieves signup form from forms.py
     if form.validate_on_submit(): 
-        hashed_password = generate_password_hash(form.password.data, method="sha256") # hashes user password
-        new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password) # adds user to database
-        db.session.add(new_user)
-        db.session.commit() 
-        flash ("Sign up successful!", 'user') # flashes a message if successful
-        return redirect (url_for("login")) # redirects user to login page if signup is successful
+        existing_username = db.session.query(models.User).filter_by(user_name=form.username.data).first()
+        if existing_username is not None: # checks if username is already registered
+            flash ("Username already registered.", 'user')
+            return render_template ("signup.html", form=form)
+        else:
+            hashed_password = generate_password_hash(form.password.data, method="sha256") # hashes user password
+            new_user = models.User(name=form.name.data, user_name=form.username.data, user_email=form.email.data, user_password=hashed_password) # adds user to database
+            db.session.add(new_user)
+            db.session.commit() 
+            flash ("Sign up successful!", 'user') # flashes a message if successful
+            return redirect (url_for("login")) # redirects user to login page if signup is successful
     return render_template ("signup.html", form=form)
 
 
@@ -67,6 +72,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
+    flash ("Logout successful!", 'user')
     return redirect (url_for("home"))
 
 

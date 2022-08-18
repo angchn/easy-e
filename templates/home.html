@@ -2,6 +2,17 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true, category_filter='user') %}
+{% if messages %}
+    {% for category, message in messages %}
+            <div class="flash_message">
+                <pre>{{ message }}</pre>
+            </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <div id="header">
     <h2 id="subtitle">strive to excel with</h2>
     <h1 id="title">easy  .e<h1>
