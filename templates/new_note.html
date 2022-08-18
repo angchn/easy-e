@@ -8,12 +8,7 @@
         <form method="POST" class="new_note_form" action="{{url_for('new_note')}}">
             {{ form.csrf_token }}
             {{ form.title(id="new_note_title", placeholder="title") }}
-                <button class="folder_dropdown_button">select folder</button>
-                <div class="folder_dropdown_content">
-                    {% for folder in folders %}
-                    <a>{{ folder.name }}</a>
-                    {% endfor %}
-                </div>
+            <button>select folder</button>
             {{ form.content(rows=10) }}
             <input type="submit" value="save" class="new_note_button">
         </form>

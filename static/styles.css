@@ -747,6 +747,11 @@ input:focus {
     padding-right: 150px;
 }
 
+.notes_inline {
+    display: inline-block;
+    width: 100%;
+}
+
 .add_note_button button {
     color: #778da9;
     border-radius: 20px;

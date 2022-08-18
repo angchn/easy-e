@@ -6,7 +6,13 @@
     <div class="notes_header">
         <h1 class="welcome">{{ name }}'s</h1>
         <h1 class="welcome_name">notes</h1>
-        <a class="add_note_button" href="{{url_for('new_note')}}"><button>new note</button></a>
+        <span class="notes_inline">
+            <a class="add_note_button" href="{{url_for('new_note')}}"><button>new note</button></a>
+            <form action="{{url_for('search_note')}}" method="POST">
+                <input type="text" name="search_note" placeholder="search notes" class="notes_search_note">
+                <span class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </form>
+        </span>
     </div>
     <div class="folders">
         <div class="folder_box">

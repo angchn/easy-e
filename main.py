@@ -97,6 +97,18 @@ def notes():
     return render_template ("notes.html", name=current_user.name, favourite_notes=favourite_notes, other_notes=other_notes, folders=folders)
 
 
+@app.route("/search_note", methods=('GET', 'POST'))
+def search_note():
+    if request.method == "POST":
+        search_note = request.form.get("search_note")
+        note = db.session.query(models.Notes).filter_by(user=current_user.id, title=search_note).first()
+        if note is None:
+            flash ("Note does not exist. Please check for spelling errors.", 'note')
+            return redirect ("/dashboard")
+        note_id = note.id
+        return redirect ("/note/{}".format(note_id))
+    
+
 # route renders specific note page
 @app.route("/note/<int:id>")
 @login_required

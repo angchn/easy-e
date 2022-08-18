@@ -13,6 +13,16 @@
 {% endif %}
 {% endwith %}
 
+{% with messages = get_flashed_messages(with_categories=true, category_filter='note') %}
+{% if messages %}
+    {% for category, message in messages %}
+            <div class="flash_message">
+                <pre><strong>Error: </strong>{{ message }}</pre>
+            </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <div class="page">
     <div class="dashboard_left">
         <div class="dashboard_header">
@@ -26,8 +36,9 @@
                     <a href="{{url_for('new_note')}}"><button class="note_button">new note</button></a>
                 </div>
                 <div class="favourites_left">
-                    <form method="POST">
-                        <input type="text" placeholder="search notes" class="notes_search"><span class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <form action="{{url_for('search_note')}}" method="POST">
+                        <input type="text" name="search_note" placeholder="search notes" class="notes_search">
+                        <span class="search_icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </form>
                     {% for note in notes %}
                     <div class="notes_list">
