@@ -13,16 +13,6 @@
 {% endif %}
 {% endwith %}
 
-{% with messages = get_flashed_messages(with_categories=true, category_filter='note') %}
-{% if messages %}
-    {% for category, message in messages %}
-            <div class="flash_message">
-                <pre><strong>Error: </strong>{{ message }}</pre>
-            </div>
-    {% endfor %}
-{% endif %}
-{% endwith %}
-
 <div class="page">
     <div class="dashboard_left">
         <div class="dashboard_header">
@@ -102,6 +92,7 @@
         <div class="calender">
             <div class="calender_text">
                 <h2 class="dashboard_subheadings">upcoming deadlines</h2>
+                <a><button>view all</button></a>
             </div>
         </div>
     </div>

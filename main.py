@@ -1,5 +1,3 @@
-from doctest import NORMALIZE_WHITESPACE
-from re import I
 from flask import Flask, render_template, abort, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
@@ -19,6 +17,9 @@ login_manager.login_view = "login"
 import models
 import forms
 from forms import LoginForm, RegisterForm
+
+
+# update task, make search bar case and space insensitive, style search bar in notes.html
 
 
 # Flask login (gets user_id)
@@ -104,7 +105,7 @@ def search_note():
         note = db.session.query(models.Notes).filter_by(user=current_user.id, title=search_note).first()
         if note is None:
             flash ("Note does not exist. Please check for spelling errors.", 'note')
-            return redirect ("/dashboard")
+            return redirect ("/notes")
         note_id = note.id
         return redirect ("/note/{}".format(note_id))
     

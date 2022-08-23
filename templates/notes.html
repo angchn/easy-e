@@ -2,6 +2,17 @@
 {% block title %}notes{% endblock %}
 
 {% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true, category_filter='note') %}
+{% if messages %}
+    {% for category, message in messages %}
+            <div class="flash_message">
+                <pre><strong>Error: </strong>{{ message }}</pre>
+            </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <div class="page">
     <div class="notes_header">
         <h1 class="welcome">{{ name }}'s</h1>
