@@ -8,7 +8,9 @@
         <form method="POST" class="new_note_form" action="{{url_for('new_note')}}">
             {{ form.csrf_token }}
             {{ form.title(id="new_note_title", placeholder="title") }}
-            <button>select folder</button>
+            <div class="notes_select_folder">
+                <button>select folder</button>
+            </div>
             {{ form.content(rows=10) }}
             <input type="submit" value="save" class="new_note_button">
         </form>

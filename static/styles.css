@@ -748,7 +748,7 @@ input:focus {
 }
 
 .notes_inline {
-    display: inline-block;
+    display: inline-flex;
     width: 100%;
 }
 
@@ -771,6 +771,18 @@ input:focus {
 .add_note_button button:hover {
     color: white;
     background-color: #778da9;
+}
+
+.notes_search_note {
+    border: none;
+    vertical-align: middle;
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 20px;
+    margin-left: 20px;
+    font-size: 15px;
+    padding-left: 20px;
+    width: 300px;
 }
 
 .folders {
@@ -822,7 +834,7 @@ input:focus {
     font-size: 16px;
 }
 
-.favourite_icon {
+.favourite_icon, .delete_icon_notes {
     margin-right: 15px;
     color: #485b72;
     font-size: 14px;
@@ -831,6 +843,7 @@ input:focus {
 .notes_icon {
     color: #485b72;
     margin-right: 10px;
+    margin-left: 15px;
     font-size: 14px;
 }
 
@@ -1059,4 +1072,5 @@ input:focus {
 .delete, .complete, .update {
     text-decoration: none;
     color: inherit;
+
 }

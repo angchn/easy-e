@@ -1,5 +1,6 @@
 from flask import Flask, render_template, abort, redirect, url_for, flash, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -19,7 +20,7 @@ import forms
 from forms import LoginForm, RegisterForm
 
 
-# update task, make search bar case and space insensitive, style search bar in notes.html
+# update task, assign folder in new notes, 
 
 
 # Flask login (gets user_id)
@@ -102,7 +103,8 @@ def notes():
 def search_note():
     if request.method == "POST":
         search_note = request.form.get("search_note")
-        note = db.session.query(models.Notes).filter_by(user=current_user.id, title=search_note).first()
+        #note = db.session.query(models.Notes).filter_by(user=current_user.id, title=search_note).first()
+        note = db.session.query(models.Notes).filter_by(user=current_user.id).filter(func.lower(models.Notes.title) == func.lower(search_note)).first()
         if note is None:
             flash ("Note does not exist. Please check for spelling errors.", 'note')
             return redirect ("/notes")
@@ -129,6 +131,7 @@ def change_folder(note_id,folder_id):
     return redirect ("/note/{}".format(note_id))
 
 
+# route for user to edit note
 @app.route("/edit_note/<int:id>", methods=('GET', 'POST'))
 def edit_note(id):
     note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id).first()
@@ -143,6 +146,14 @@ def edit_note(id):
         db.session.commit()
         return redirect ("/note/{}".format(id))
     return render_template ("note_edit.html", name=current_user.name, form=form, note=note, note_content=note_content)
+
+
+@app.route("/delete_note/<int:id>")
+def delete_note(id):
+    note_delete = db.session.query(models.Notes).filter_by(id=id).first()
+    db.session.delete(note_delete)
+    db.session.commit()
+    return redirect (url_for("notes"))
 
 
 # route for user to add new folder
@@ -174,7 +185,7 @@ def new_note():
         if form.validate_on_submit():
             content = request.form.get("content")
             title = request.form.get("title")
-            notes = models.Notes(user=current_user.id, title=title, content=content)
+            notes = models.Notes(user=current_user.id, title=func.trim(title), content=content)
             db.session.add(notes)
             db.session.commit()
             return redirect (url_for("notes"))
