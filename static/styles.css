@@ -891,7 +891,6 @@ input:focus {
     border: none;
 }
 
-
 #new_note_title {
     font-size: 24px;
     font-family: 'Inter', sans-serif;
@@ -903,6 +902,16 @@ input:focus {
     color: #485b72;
     width: 60%;
 }
+
+.folder_select {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.select_content {
+    margin-left: 10px;
+}
+
 
 .new_note_button {
     font-family: 'Inter', sans-serif;

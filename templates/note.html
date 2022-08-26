@@ -32,7 +32,7 @@
             <button class="folder_dropdown_button">change folder</button>
             <div class="folder_dropdown_content">
                 {% for folder in folders %}
-                <a href="/change_folder/{{ note.id }}/{{ folder.id }}">{{ folder.name }}</a>
+                    <a href="/change_folder/{{ note.id }}/{{ folder.id }}">{{ folder.name }}</a>
                 {% endfor %}
             </div>
         </div>

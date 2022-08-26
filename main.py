@@ -185,7 +185,8 @@ def new_note():
         if form.validate_on_submit():
             content = request.form.get("content")
             title = request.form.get("title")
-            notes = models.Notes(user=current_user.id, title=func.trim(title), content=content)
+            folder = request.form.get("folder")
+            notes = models.Notes(user=current_user.id, title=func.trim(title), content=content, folder=folder)
             db.session.add(notes)
             db.session.commit()
             return redirect (url_for("notes"))

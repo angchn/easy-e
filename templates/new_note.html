@@ -8,10 +8,16 @@
         <form method="POST" class="new_note_form" action="{{url_for('new_note')}}">
             {{ form.csrf_token }}
             {{ form.title(id="new_note_title", placeholder="title") }}
-            <div class="notes_select_folder">
-                <button>select folder</button>
+            <div class="folder_select">
+                <label>folder: </label>
+                <select name="folder" class="select_content">
+                    <option>None</option>
+                    {% for folder in folders %}
+                        <option>{{ folder.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            {{ form.content(rows=10) }}
+            {{ form.content(rows=15) }}
             <input type="submit" value="save" class="new_note_button">
         </form>
         {{ ckeditor.load(pkg_type="basic") }}
