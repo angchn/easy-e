@@ -5,6 +5,7 @@ from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_ckeditor import CKEditor
+from datetime import date, timedelta
 
 app = Flask (__name__)
 app.config.from_object(Config)
@@ -257,6 +258,15 @@ def redo_complete_task(id):
 def update_task(id):
     task = db.session.query(models.Todo).filter_by(id=id).first()
     return render_template ("update_task.html", name=current_user.name)
+
+
+@app.route("/deadlines")
+@login_required
+def deadlines():
+    deadlines = db.session.query(models.Deadlines).filter_by(user=current_user.id)
+    overdue_items = db.session.query(models.Deadlines).filter(models.Deadlines.date < date.today()).all()
+    today_items = db.session.query(models.Deadlines).filter(models.Deadlines.date == date.today()).all()
+    return render_template ("deadlines.html", name=current_user.name, deadlines=deadlines, overdue_items=overdue_items, today_items=today_items)
 
 
 # route renders past papers page

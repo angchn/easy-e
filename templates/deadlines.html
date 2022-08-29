@@ -1,0 +1,35 @@
+{% extends "layout_user.html" %}
+{% block title %}deadlines{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <div class="dashboard_header">
+        <h1 class="welcome">{{ name }}'s</h1>
+        <h1 class="welcome_name">deadlines</h1>
+    </div>
+    <div class="deadlines_container">
+        <div class="deadlines_sections">
+            <h1 class="dashboard_subheadings">overdue</h1>
+            {% for overdue_item in overdue_items %}
+                <li>{{ overdue_item.name }} | {{ overdue_item.date }}</li>
+        {% endfor %}
+        </div>
+        <br>
+        <div class="deadlines_sections">
+            <h1 class="dashboard_subheadings">due today</h1>
+            {% for today_item in today_items %}
+                <li>{{ today_item.name }} | {{ today_item.date }}</li>
+            {% endfor%}
+        </div>
+        <br>
+        <div class="deadlines_sections">
+            <h1 class="dashboard_subheadings">due later</h1>
+            {% for deadline in deadlines %}
+                <li>{{ deadline.name }} | {{ deadline.date }}</li>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

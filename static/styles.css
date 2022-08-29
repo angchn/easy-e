@@ -1096,3 +1096,19 @@ input:focus {
     color: inherit;
 
 }
+
+.deadlines_container {
+    display: inline-flex;
+    width: 100%;
+}
+
+.deadlines_sections {
+    width: 80%;
+    background-color: white;
+    height: 500px;
+    border-radius: 25px;
+    margin-right: 1%;
+    margin-left: 1%;
+    padding: 30px;
+}
+

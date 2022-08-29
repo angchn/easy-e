@@ -1,16 +1,17 @@
 from main import db
 from flask_login import UserMixin
 
-'''
+
 DeadlinesTags = db.Table("deadlines_tags",
-    db.column('deadlines_id', db.Integer, db.ForeignKey('deadlines.id')),
-    db.column('tags_id', db.Integer, db.ForeignKey('tags.id'))
+    db.Column('deadlines_id', db.Integer, db.ForeignKey('deadlines.id')),
+    db.Column('tags_id', db.Integer, db.ForeignKey('tags.id'))
     )
 
 
 class Deadlines(db.Model):
     __tablename__ = "deadlines"
     id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     date = db.Column(db.Date)
     name = db.Column(db.String())
 
@@ -23,11 +24,12 @@ class Deadlines(db.Model):
 class Tags(db.Model):
     __tablename__ = "tags"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Test())
+    user = db.Column(db.Integer, db.ForeignKey('user_login.id'))
+    name = db.Column(db.String())
 
     def __repr__(self):
         return self.name
-'''
+    
 
 class Paper(db.Model):
     __tablename__ = "past_papers"
