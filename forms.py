@@ -16,5 +16,5 @@ class RegisterForm(FlaskForm):
     password = PasswordField("password", validators=[InputRequired(), Length(min=8, max=80)])
 
 class PostForm(FlaskForm):
-    title = StringField("title", validators=[DataRequired(), Length(min=2, max=50)])
+    title = StringField("title", validators=[DataRequired(), Length(min=2)])
     content = CKEditorField("content", validators=[DataRequired()], widget=TextArea())

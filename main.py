@@ -20,7 +20,7 @@ import forms
 from forms import LoginForm, RegisterForm
 
 
-# update task, assign folder in new notes, 
+# update task
 
 
 # Flask login (gets user_id)
@@ -186,7 +186,11 @@ def new_note():
             content = request.form.get("content")
             title = request.form.get("title")
             folder = request.form.get("folder")
-            notes = models.Notes(user=current_user.id, title=func.trim(title), content=content, folder=folder)
+            if folder == "None":
+                notes = models.Notes(user=current_user.id, title=func.trim(title), content=content)
+            elif folder != "None":
+                get_folder = db.session.query(models.Folders).filter_by(name=folder).first()
+                notes = models.Notes(user=current_user.id, title=func.trim(title), content=content, folder=get_folder.id)
             db.session.add(notes)
             db.session.commit()
             return redirect (url_for("notes"))
@@ -247,6 +251,12 @@ def redo_complete_task(id):
     task.complete = False
     db.session.commit()
     return redirect (url_for("dashboard"))
+
+
+@app.route("/update_task/<int:id>")
+def update_task(id):
+    task = db.session.query(models.Todo).filter_by(id=id).first()
+    return render_template ("update_task.html", name=current_user.name)
 
 
 # route renders past papers page

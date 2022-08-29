@@ -584,6 +584,7 @@ input:focus {
     margin-top: -45px;
     color: #0d1b2a;
     user-select: none;
+    word-wrap: break-word;
 }
 
 .dashboard_photo {
@@ -900,18 +901,30 @@ input:focus {
     border: none;
     background-color: #f6f5f0;
     color: #485b72;
-    width: 60%;
+    width: 80%;
 }
 
 .folder_select {
     display: inline-flex;
     cursor: pointer;
+    color: #485b72;
+}
+
+.folder_select select {
+    padding: 8px;
+    font-family: 'Inter', sans-serif;
+    margin-top: -8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #485b72;
+    width: 150px;
 }
 
 .select_content {
     margin-left: 10px;
+    border-radius: 20px;
+    cursor: pointer;
 }
-
 
 .new_note_button {
     font-family: 'Inter', sans-serif;

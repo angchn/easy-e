@@ -9,7 +9,7 @@
             {{ form.csrf_token }}
             {{ form.title(id="new_note_title", placeholder="title") }}
             <div class="folder_select">
-                <label>folder: </label>
+                <label>select folder: </label>
                 <select name="folder" class="select_content">
                     <option>None</option>
                     {% for folder in folders %}
