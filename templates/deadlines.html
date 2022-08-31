@@ -4,29 +4,39 @@
 {% block content %}
 
 <div class="page">
-    <div class="dashboard_header">
+    <div class="deadlines_header">
         <h1 class="welcome">{{ name }}'s</h1>
         <h1 class="welcome_name">deadlines</h1>
+        <span>
+            <a class="new_deadline_button"><button>new deadline</button></a>
+            <a class="new_deadline_button"><button>new tag</button></a>
+        </span>
     </div>
     <div class="deadlines_container">
         <div class="deadlines_sections">
             <h1 class="dashboard_subheadings">overdue</h1>
-            {% for overdue_item in overdue_items %}
-                <li>{{ overdue_item.name }} | {{ overdue_item.date }}</li>
-        {% endfor %}
+            {% for item in overdue_items %}
+                <li>{{ item.name }} | {{ item.date }} </li>
+                {% for tag in item.tags %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
+            {% endfor %}
         </div>
         <br>
         <div class="deadlines_sections">
             <h1 class="dashboard_subheadings">due today</h1>
-            {% for today_item in today_items %}
-                <li>{{ today_item.name }} | {{ today_item.date }}</li>
+            {% for item in today_items %}
+                <li>{{ item.name }} | {{ item.date }}</li>
             {% endfor%}
         </div>
         <br>
         <div class="deadlines_sections">
             <h1 class="dashboard_subheadings">due later</h1>
-            {% for deadline in deadlines %}
-                <li>{{ deadline.name }} | {{ deadline.date }}</li>
+            {% for item in later_items %}
+                <li>{{ item.name }} | {{ item.date }}</li>
+                {% for tag in item.tags %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
             {% endfor%}
         </div>
     </div>

@@ -33,9 +33,11 @@
                 <input type="submit" value="add" class="new_folder_button">
             </form>
         </div>
+        <div class="folders_list">
         {% for folder in folders %}
             <a class="folder_buttons" href="/folder/{{ folder.id }}"><button>{{ folder.name }}</button></a>
         {% endfor %}
+        </div>
     </div>
     
     <div class="notes">

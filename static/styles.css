@@ -805,6 +805,10 @@ input:focus {
     color: #778da9;
     cursor: pointer;
     transition-duration: 0.2s;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 200px;
 }
 
 .folder_buttons button:hover {
@@ -826,6 +830,11 @@ input:focus {
 .new_folder{width: 250px;}
 
 .new_folder_button {width: 60px;}
+
+.folders_list {
+    overflow-x: scroll;
+    padding-bottom: 10px;
+}
 
 .notes_list {
     list-style: none;
@@ -1094,7 +1103,33 @@ input:focus {
 .delete, .complete, .update {
     text-decoration: none;
     color: inherit;
+}
 
+
+/* styling for "deadlines.html" */
+
+.deadlines_header {
+    font-family: 'Outfit', sans-serif;
+    padding-top: 30px;
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.new_deadline_button button {
+    color: #778da9;
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+    margin-left: 15px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 150px;
 }
 
 .deadlines_container {
@@ -1111,4 +1146,3 @@ input:focus {
     margin-left: 1%;
     padding: 30px;
 }
-

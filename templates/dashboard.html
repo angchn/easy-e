@@ -93,6 +93,14 @@
             <div class="calender_text">
                 <h2 class="dashboard_subheadings">upcoming deadlines</h2>
                 <a href="{{url_for('deadlines')}}"><button>view all</button></a>
+                <h3 class="subheadings_small">due today</h3>
+                {% for item in today_items %}
+                    <li>{{ item.name }}</li>
+                {% endfor %}
+                <h3 class="subheadings_small">due later</h3>
+                {% for item in later_items %}
+                    <li>{{ item.name }}</li>
+                {% endfor %}
             </div>
         </div>
     </div>

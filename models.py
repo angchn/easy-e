@@ -2,30 +2,32 @@ from main import db
 from flask_login import UserMixin
 
 
-DeadlinesTags = db.Table("deadlines_tags",
-    db.Column('deadlines_id', db.Integer, db.ForeignKey('deadlines.id')),
-    db.Column('tags_id', db.Integer, db.ForeignKey('tags.id'))
+DeadlineTag = db.Table("deadline_tag",
+    db.Column('deadline_id', db.Integer, db.ForeignKey('deadline.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
     )
 
 
-class Deadlines(db.Model):
-    __tablename__ = "deadlines"
+class Deadline(db.Model):
+    __tablename__ = "deadline"
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     date = db.Column(db.Date)
     name = db.Column(db.String())
 
-    tags = db.relationship('Tags', secondary=DeadlinesTags, backref='deadlines')
+    tags = db.relationship('Tag', secondary=DeadlineTag, back_populates='deadlines')
 
     def __repr__(self):
         return self.name
 
 
-class Tags(db.Model):
-    __tablename__ = "tags"
+class Tag(db.Model):
+    __tablename__ = "tag"
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.Integer, db.ForeignKey('user_login.id'))
     name = db.Column(db.String())
+
+    deadlines = db.relationship('Deadline', secondary=DeadlineTag, back_populates='tags')
 
     def __repr__(self):
         return self.name

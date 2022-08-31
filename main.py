@@ -21,7 +21,7 @@ import forms
 from forms import LoginForm, RegisterForm
 
 
-# update task
+# update task, change database names to singular
 
 
 # Flask login (gets user_id)
@@ -87,7 +87,12 @@ def dashboard():
     complete_tasks = models.Todo.query.filter_by(user=current_user.id, complete=True)
     notes = models.Notes.query.filter_by(user=current_user.id, favourite=True)
     folders = models.Folders.query.filter_by(user=current_user.id)
-    return render_template ("dashboard.html", name=current_user.name, incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, notes=notes, folders=folders)
+    today_items = db.session.query(models.Deadline).filter(models.Deadline.date == date.today()).all()
+    later_items = db.session.query(models.Deadline).filter(models.Deadline.date > date.today()).all()
+    return render_template ("dashboard.html", name=current_user.name, 
+        incomplete_tasks=incomplete_tasks, complete_tasks=complete_tasks, 
+        notes=notes, folders=folders,
+        today_items=today_items, later_items=later_items)
 
 
 # route renders all notes page
@@ -263,10 +268,10 @@ def update_task(id):
 @app.route("/deadlines")
 @login_required
 def deadlines():
-    deadlines = db.session.query(models.Deadlines).filter_by(user=current_user.id)
-    overdue_items = db.session.query(models.Deadlines).filter(models.Deadlines.date < date.today()).all()
-    today_items = db.session.query(models.Deadlines).filter(models.Deadlines.date == date.today()).all()
-    return render_template ("deadlines.html", name=current_user.name, deadlines=deadlines, overdue_items=overdue_items, today_items=today_items)
+    overdue_items = db.session.query(models.Deadline).filter(models.Deadline.date < date.today()).all()
+    today_items = db.session.query(models.Deadline).filter(models.Deadline.date == date.today()).all()
+    later_items = db.session.query(models.Deadline).filter(models.Deadline.date > date.today()).all()
+    return render_template ("deadlines.html", name=current_user.name, overdue_items=overdue_items, today_items=today_items, later_items=later_items)
 
 
 # route renders past papers page
@@ -274,6 +279,7 @@ def deadlines():
 def papers():
     papers = models.Paper.query.all()
     return render_template ("papers.html", page_title="Past_Papers", papers=papers)
+
 
 # route renders 
 @app.route("/past_papers_english")
