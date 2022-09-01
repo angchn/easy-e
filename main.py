@@ -265,6 +265,7 @@ def update_task(id):
     return render_template ("update_task.html", name=current_user.name)
 
 
+# route renders deadlines page
 @app.route("/deadlines")
 @login_required
 def deadlines():
@@ -272,6 +273,12 @@ def deadlines():
     today_items = db.session.query(models.Deadline).filter(models.Deadline.date == date.today()).all()
     later_items = db.session.query(models.Deadline).filter(models.Deadline.date > date.today()).all()
     return render_template ("deadlines.html", name=current_user.name, overdue_items=overdue_items, today_items=today_items, later_items=later_items)
+
+
+# route for user to add new deadline
+@app.route("/new_deadline")
+def new_deadline():
+    return render_template ("deadline_new.html", name=current_user.name)
 
 
 # route renders past papers page

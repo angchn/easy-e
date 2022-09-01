@@ -638,6 +638,10 @@ input:focus {
 
 .dashboard_folders {
     margin-top: 20px;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .notes_link {
@@ -863,11 +867,13 @@ input:focus {
     font-family: 'Inter', sans-serif;
     margin-bottom: 10px;
     display: inline-block;
+    text-overflow: ellipsis;
 }
 
 .notes_list_item a {
     text-decoration: none;
     color: #485b72;
+    text-overflow: ellipsis;
 }
 
 .notes_list_item a:hover {
@@ -1145,4 +1151,34 @@ input:focus {
     margin-right: 1%;
     margin-left: 1%;
     padding: 30px;
+}
+
+.deadline_div {
+    font-family: 'Inter', sans-serif;
+    list-style: circle;
+    color: #0d1b2a;
+}
+
+.deadline_div span {
+    color: #0d1b2a;
+    font-weight: bold;
+}
+
+.deadline_tags {
+    list-style: none;
+    font-size: 14px;
+    margin-left: 30px;
+    color: #485b72;
+    cursor: default;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.deadline_tags li {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #f6f5f0;
 }

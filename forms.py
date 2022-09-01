@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField
+from wtforms import StringField, PasswordField, BooleanField, DateField
 from wtforms.validators import InputRequired, Email, Length, DataRequired
 from flask_ckeditor import CKEditorField
 from wtforms.widgets import TextArea
@@ -18,3 +18,6 @@ class RegisterForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField("title", validators=[DataRequired(), Length(min=2)])
     content = CKEditorField("content", validators=[DataRequired()], widget=TextArea())
+
+class DeadlineForm(FlaskForm):
+    name = StringField("name", validators=[DataRequired()])
