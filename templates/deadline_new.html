@@ -1,1 +1,14 @@
-<h1>hi</h1>
+{% extends "layout_user.html" %}
+{% block title %}new deadline{% endblock %}}
+
+{% block content %}
+<div class="page">
+    <h1>hi</h1>
+    <form method="POST" action="/new_deadline">
+        {{ form.csrf_token }}
+        {{ form.name(placeholder="name") }}
+        {{ form.date(placeholder="YYYY-MM-DD")}}
+        <input type="submit" value="add">
+    </form>
+</div>
+{% endblock %}

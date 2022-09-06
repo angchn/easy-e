@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, DateField
+from wtforms import StringField, PasswordField, BooleanField, DateField, SelectMultipleField
 from wtforms.validators import InputRequired, Email, Length, DataRequired
 from flask_ckeditor import CKEditorField
 from wtforms.widgets import TextArea
@@ -21,3 +21,6 @@ class PostForm(FlaskForm):
 
 class DeadlineForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
+    date = DateField("date", format="%Y-%m-%d", validators=[DataRequired()])
+    #tags = SelectMultipleField("tags", coerce=int)
+    
