@@ -5,7 +5,7 @@ from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_ckeditor import CKEditor
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 app = Flask (__name__)
 app.config.from_object(Config)
@@ -21,7 +21,7 @@ import forms
 from forms import LoginForm, RegisterForm
 
 
-# update task, change database names to singular
+# update task, change database names to singular, DATETIME
 
 
 # Flask login (gets user_id)
@@ -109,7 +109,6 @@ def notes():
 def search_note():
     if request.method == "POST":
         search_note = request.form.get("search_note")
-        #note = db.session.query(models.Notes).filter_by(user=current_user.id, title=search_note).first()
         note = db.session.query(models.Notes).filter_by(user=current_user.id).filter(func.lower(models.Notes.title) == func.lower(search_note)).first()
         if note is None:
             flash ("Note does not exist. Please check for spelling errors.", 'note')
@@ -276,9 +275,18 @@ def deadlines():
 
 
 # route for user to add new deadline
-@app.route("/new_deadline")
+@app.route("/new_deadline", methods=('GET', 'POST'))
 def new_deadline():
-    return render_template ("deadline_new.html", name=current_user.name)
+    form = forms.DeadlineForm()
+    if request.method == "POST":
+        if form.validate_on_submit():
+            name = request.form.get("name")
+            date = datetime.strptime(form.date.data, '%Y-%m-%d')
+            new_deadline = models.Deadline(user=current_user.id, name=name, date=date)
+            db.session.add(new_deadline)
+            db.session.commit()
+        return redirect (url_for("deadlines"))
+    return render_template ("deadline_new.html", name=current_user.name, form=form)
 
 
 # route renders past papers page
