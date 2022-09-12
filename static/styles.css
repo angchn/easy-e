@@ -1182,3 +1182,38 @@ input:focus {
     padding-right: 10px;
     background-color: #f6f5f0;
 }
+
+.error_div {
+    margin-top: 30vh;
+}
+
+.error_404 {
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    font-size: 120px;
+    color: #0d1b2a;
+}
+
+.error_text {
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+    font-size: 38px;
+    color: #0d1b2a;
+    margin-top: -110px;
+}
+
+.error_smalltext{
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #485b72;
+}
+
+.error_smalltext a{
+    text-decoration: none;
+    border-bottom: 2px solid;
+}
+
+.error_smalltext a:visited {
+    color: #485b72;
+}

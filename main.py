@@ -7,21 +7,27 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from flask_ckeditor import CKEditor
 from datetime import date, timedelta, datetime
 
+
 app = Flask (__name__)
 app.config.from_object(Config)
 
 db = SQLAlchemy(app)
+
+# ckeditor for user notes
 ckeditor = CKEditor(app)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
 
 import models
 import forms
 from forms import LoginForm, RegisterForm
 
 
-# update task, change database names to singular, DATETIME
+# feature incomplete due to time constraints, pep 8, testing (web, routes, database), footer links, 
+# (expected and then what i got - test queries), look at HCI (CS FIELDGUIDE)
 
 
 # Flask login (gets user_id)
@@ -33,7 +39,7 @@ def load_user(user_id):
 # route renders home page
 @app.route("/")
 def home():
-    return render_template ("home.html", page_title="Home")
+    return render_template ("home.html")
 
 
 # route renders login page
@@ -47,7 +53,9 @@ def login():
                 login_user(user, remember=form.remember.data)
                 flash ("Login successful!", 'user') # flashes a message if successful
                 return redirect (url_for("dashboard"))
-        flash("Invalid username or password.", 'user')  # redirects user if password entered is wrong
+        elif user is None:
+            flash ("Invalid username or password.", 'user')
+            return redirect ("/login") # redirects user if password entered is wrong
     return render_template ("login.html", form=form)
 
 
@@ -56,7 +64,7 @@ def login():
 def signup():
     form = RegisterForm() # retrieves signup form from forms.py
     if form.validate_on_submit(): 
-        existing_username = db.session.query(models.User).filter_by(user_name=form.username.data).first()
+        existing_username = db.session.query(models.User).filter_by(user_name=form.username.data).first_or_404()
         if existing_username is not None: # checks if username is already registered
             flash ("Username already registered.", 'user')
             return render_template ("signup.html", form=form)
@@ -121,15 +129,15 @@ def search_note():
 @app.route("/note/<int:id>")
 @login_required
 def note(id):
-    notes = db.session.query(models.Notes).filter_by(user=current_user.id, id=id)
+    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id).first_or_404()
     folders = db.session.query(models.Folders).filter_by(user=current_user.id)
-    return render_template ("note.html", name=current_user.name, notes=notes, folders=folders)
+    return render_template ("note.html", name=current_user.name, note=note, folders=folders)
 
 
 # route for user to change folder of specific note
 @app.route("/change_folder/<int:note_id>/<int:folder_id>")
 def change_folder(note_id,folder_id):
-    current_note = db.session.query(models.Notes).filter_by(id=note_id).first()
+    current_note = db.session.query(models.Notes).filter_by(id=note_id).first_or_404()
     current_note.folder = folder_id
     db.session.commit()
     flash ("Folder successfully changed!", 'note')
@@ -139,7 +147,7 @@ def change_folder(note_id,folder_id):
 # route for user to edit note
 @app.route("/edit_note/<int:id>", methods=('GET', 'POST'))
 def edit_note(id):
-    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id).first()
+    note = db.session.query(models.Notes).filter_by(user=current_user.id, id=id).first_or_404()
     form = forms.PostForm()
     note_content = note.content
     form.title.data = note.title
@@ -155,7 +163,7 @@ def edit_note(id):
 
 @app.route("/delete_note/<int:id>")
 def delete_note(id):
-    note_delete = db.session.query(models.Notes).filter_by(id=id).first()
+    note_delete = db.session.query(models.Notes).filter_by(id=id).first_or_404()
     db.session.delete(note_delete)
     db.session.commit()
     return redirect (url_for("notes"))
@@ -205,7 +213,7 @@ def new_note():
 # route for user to favourite note
 @app.route("/favourite_note/<int:id>")
 def favourite_note(id):
-    note = db.session.query(models.Notes).filter_by(id=id).first()
+    note = db.session.query(models.Notes).filter_by(id=id).first_or_404()
     note.favourite = True
     db.session.commit()
     return redirect (url_for("notes"))
@@ -214,7 +222,7 @@ def favourite_note(id):
 # route for user to un-favourite note
 @app.route("/unfavourite_note/<int:id>")
 def unfavourite_note(id):
-    note = db.session.query(models.Notes).filter_by(id=id).first()
+    note = db.session.query(models.Notes).filter_by(id=id).first_or_404()
     note.favourite = False
     db.session.commit()
     return redirect (url_for("notes"))
@@ -234,7 +242,7 @@ def add_task():
 # route for user to delete task
 @app.route("/delete_task/<int:id>")
 def delete_task(id):
-    task_delete = db.session.query(models.Todo).filter_by(id=id).first()
+    task_delete = db.session.query(models.Todo).filter_by(id=id).first_or_404()
     db.session.delete(task_delete)
     db.session.commit()
     return redirect (url_for("dashboard"))
@@ -243,7 +251,7 @@ def delete_task(id):
 # route for user to mark task complete
 @app.route("/complete_task/<int:id>")
 def complete_task(id):
-    task = db.session.query(models.Todo).filter_by(id=id).first()
+    task = db.session.query(models.Todo).filter_by(id=id).first_or_404()
     task.complete = True
     db.session.commit()
     return redirect (url_for("dashboard"))
@@ -252,7 +260,7 @@ def complete_task(id):
 # route for user to un-mark task complete
 @app.route("/redo_complete_task/<int:id>")
 def redo_complete_task(id):
-    task = db.session.query(models.Todo).filter_by(id=id).first()
+    task = db.session.query(models.Todo).filter_by(id=id).first_or_404()
     task.complete = False
     db.session.commit()
     return redirect (url_for("dashboard"))
@@ -260,7 +268,7 @@ def redo_complete_task(id):
 
 @app.route("/update_task/<int:id>")
 def update_task(id):
-    task = db.session.query(models.Todo).filter_by(id=id).first()
+    task = db.session.query(models.Todo).filter_by(id=id).first_or_404()
     return render_template ("update_task.html", name=current_user.name)
 
 
@@ -322,6 +330,12 @@ def chemistry():
 @app.route ("/past_papers_biology")
 def biology():
     return render_template("biology.html", page_title="Biology_Past_Papers")
+
+
+# error page
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
 
 
 if __name__ == "__main__":

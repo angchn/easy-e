@@ -6,15 +6,14 @@
     <link rel="icon" type="image/x-icon" href="/static/icon.png">
     <link rel="stylesheet" href="/static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
-    <title>{% block title %}{% endblock %} | easy.e</title>
+    <title>error | easy.e</title>
 </head> 
 
-<header>
-    {% include "nav.html" %}
-</header>
-<body>
-    {% block content %}{% endblock %}
-</body>
-<footer>
-    {% include "footer.html" %}
-</footer>
+<div class="page">
+    <div class="error_div">
+        <h1 class="error_404">404</h1>
+        <h1 class="error_text">page not found</h1>
+        <p class="error_smalltext">sorry, but the requested page is not found.</p>
+        <p class="error_smalltext">back to <a href="{{url_for('home')}}"><b>home</b></a></p> 
+    </div>
+</div>
