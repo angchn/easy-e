@@ -5,22 +5,22 @@
 
 {% with messages = get_flashed_messages(with_categories=true, category_filter='user') %}
 {% if messages %}
-    {% for category, message in messages %}
-            <div class="flash_message">
-                <pre>{{ message }}</pre>
-            </div>
-    {% endfor %}
+{% for category, message in messages %}
+<div class="flash_message">
+    <pre>{{ message }}</pre>
+</div>
+{% endfor %}
 {% endif %}
 {% endwith %}
 
 <div id="header">
     <h2 id="subtitle">strive to excel with</h2>
-    <h1 id="title">easy  .e<h1>
-    <a href="{{url_for('signup')}}"><button class="home_buttons" type="button">sign up now</button></a>
+    <h1 id="title">easy .e<h1>
+            <a href="{{url_for('signup')}}"><button class="home_buttons" type="button">sign up now</button></a>
 </div>
 
 <div class="page">
-    
+
     <div class="home_sections_left">
         <h2 class="home_headings">organise your life</h2>
         <h2 class="home_headings" style="margin-top:-40px;">inside and outside of school.</h2>
@@ -38,9 +38,9 @@
         <div class="home_papers">
             <a href="{{url_for('english')}}"><button type=button class="home_subjects">english</button></a>
             <a href="{{url_for('maths')}}"><button type=button class="home_subjects">maths</button></a>
-            <a href="{{url_for('physics')}}"><button type=button class="home_subjects">physics</button></a>
-            <a href="{{url_for('chemistry')}}"><button type=button class="home_subjects">chemistry</button></a>
-            <a href="{{url_for('biology')}}"><button type=button class="home_subjects">biology</button></a>
+            <a><button type=button class="home_subjects">physics</button></a>
+            <a><button type=button class="home_subjects">chemistry</button></a>
+            <a><button type=button class="home_subjects">biology</button></a>
             <p class="home_smalltext">* all resources belong to NZQA.</p>
         </div>
     </div>
