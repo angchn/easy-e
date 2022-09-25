@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %} maths |{% endblock %}
+{% block title %} maths {% endblock %}
 
 {% block content %}
 
@@ -17,7 +17,8 @@
             {% for mpaper in mpapers %}
             {% if mpaper.standard == "numbers" %}
             <ul>
-                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
+                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}"
+                    target="_blank">{{mpaper.name}}</a>
             </ul>
             {% endif %}
             {% endfor %}
@@ -28,7 +29,8 @@
             {% for mpaper in mpapers %}
             {% if mpaper.standard == "differentiation" %}
             <ul>
-                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
+                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}"
+                    target="_blank">{{mpaper.name}}</a>
             </ul>
             {% endif %}
             {% endfor %}
@@ -39,7 +41,8 @@
             {% for mpaper in mpapers %}
             {% if mpaper.standard == "integration" %}
             <ul>
-                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}" target="_blank">{{mpaper.name}}</a>
+                <a class="paper_link" href="/static/past_paper_files/{{mpaper.paper_file}}"
+                    target="_blank">{{mpaper.name}}</a>
             </ul>
             {% endif %}
             {% endfor %}

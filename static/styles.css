@@ -35,7 +35,7 @@ body {
     text-decoration: none;
 }
 
-.nav_button:hover{
+.nav_button:hover {
     color: #0d1b2a;
     cursor: pointer;
 }
@@ -60,7 +60,7 @@ body {
 }
 
 .dashboard_button:hover {
-    color: #0d1b2a; 
+    color: #0d1b2a;
 }
 
 .flash_message {
@@ -69,7 +69,7 @@ body {
     margin-right: auto;
     left: 0;
     right: 0;
-    position: absolute; 
+    position: absolute;
 }
 
 .flash_message pre {
@@ -80,10 +80,10 @@ body {
     font-size: 14px;
     padding-left: 20px;
     z-index: 1;
-    background: rgba(255,255,255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
 }
 
-#header{
+#header {
     text-align: center;
     padding-top: 175px;
     height: 350px;
@@ -151,7 +151,7 @@ body {
     font-size: 12px;
     color: #778da9;
     text-align: left;
-    margin-left: 10%; 
+    margin-left: 10%;
 }
 
 .home_headings {
@@ -221,7 +221,7 @@ body {
     position: absolute;
     background-color: #f6f5f0;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -233,9 +233,13 @@ body {
     display: block;
 }
 
-#dropdown_content a:hover {color: #0d1b2a;}
+#dropdown_content a:hover {
+    color: #0d1b2a;
+}
 
-#paper_dropdown:hover #dropdown_content {display: block;}
+#paper_dropdown:hover #dropdown_content {
+    display: block;
+}
 
 .arrow {
     border: solid #778da9;
@@ -375,7 +379,9 @@ body {
     transition-duration: 0.1s;
 }
 
-.paper_link:visited {color: #778da9;}
+.paper_link:visited {
+    color: #778da9;
+}
 
 .paper_link:hover {
     color: #0d1b2a;
@@ -471,11 +477,11 @@ body {
     transition-duration: 0.2s;
 }
 
-.login_selected:visited{
+.login_selected:visited {
     color: #0d1b2a;
 }
 
-.login_unselected:hover{
+.login_unselected:hover {
     color: #485b72;
 }
 
@@ -525,7 +531,7 @@ body {
 }
 
 input:focus {
-    outline:none;
+    outline: none;
 }
 
 .login_button {
@@ -686,7 +692,8 @@ input:focus {
     position: relative;
 }
 
-.folder_dropdown_button, .edit_note_button {
+.folder_dropdown_button,
+.edit_note_button {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     border: 1.5px solid #778da9;
@@ -712,7 +719,7 @@ input:focus {
     color: #778da9;
     border: 1.5px solid #778da9;
     padding: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
 }
 
@@ -724,17 +731,23 @@ input:focus {
     color: #778da9;
 }
 
-.folder_dropdown_content a:hover {font-weight: bold;}
+.folder_dropdown_content a:hover {
+    font-weight: bold;
+}
 
 .folder_dropdown_content a:visited {
-    color: #778da9;}
+    color: #778da9;
+}
 
-.folder_dropdown_button:hover , .edit_note_button:hover {
+.folder_dropdown_button:hover,
+.edit_note_button:hover {
     background-color: #778da9;
     color: #f6f5f0;
 }
 
-.folder_dropdown:hover .folder_dropdown_content {display: block;}
+.folder_dropdown:hover .folder_dropdown_content {
+    display: block;
+}
 
 .edit_note_button {
     float: right;
@@ -831,9 +844,13 @@ input:focus {
     margin-top: 25px;
 }
 
-.new_folder{width: 250px;}
+.new_folder {
+    width: 250px;
+}
 
-.new_folder_button {width: 60px;}
+.new_folder_button {
+    width: 60px;
+}
 
 .folders_list {
     overflow-x: scroll;
@@ -848,7 +865,8 @@ input:focus {
     font-size: 16px;
 }
 
-.favourite_icon, .delete_icon_notes {
+.favourite_icon,
+.delete_icon_notes {
     margin-right: 15px;
     color: #485b72;
     font-size: 14px;
@@ -861,7 +879,9 @@ input:focus {
     font-size: 14px;
 }
 
-.notes_list_folder { font-weight: bold; }
+.notes_list_folder {
+    font-weight: bold;
+}
 
 .notes_list_item {
     font-family: 'Inter', sans-serif;
@@ -881,7 +901,9 @@ input:focus {
     font-weight: bold;
 }
 
-.notes_list_item:visited { color: #485b72; }
+.notes_list_item:visited {
+    color: #485b72;
+}
 
 .arrow_icon_left {
     font-size: 11px;
@@ -898,7 +920,9 @@ input:focus {
     border-bottom: 2px solid #778da9;
 }
 
-.back_link:visited {color: #778da9}
+.back_link:visited {
+    color: #778da9
+}
 
 .new_note_form {
     margin-top: 30px;
@@ -955,7 +979,7 @@ input:focus {
     cursor: pointer;
 }
 
-.new_note_button:hover{
+.new_note_button:hover {
     color: #f6f5f0;
     background-color: #778da9;
 }
@@ -967,7 +991,7 @@ input:focus {
     margin-bottom: 0;
 }
 
-.favourites_left{
+.favourites_left {
     display: inline-block;
     width: 75%;
     vertical-align: top;
@@ -981,7 +1005,9 @@ input:focus {
     vertical-align: top;
 }
 
-.todo_text, .calender_text, .favourites_text {
+.todo_text,
+.calender_text,
+.favourites_text {
     padding: 20px;
 }
 
@@ -991,7 +1017,15 @@ input:focus {
     margin-bottom: -10px;
 }
 
-.todo_textbox, .notes_search, .new_folder {
+.deadlines_list {
+    font-family: 'Inter', sans-serif;
+    margin-top: 10px;
+    list-style: circle;
+}
+
+.todo_textbox,
+.notes_search,
+.new_folder {
     font-family: 'Inter', sans-serif;
     color: #0d1b2a;
     padding: 5px;
@@ -1000,16 +1034,22 @@ input:focus {
     border-bottom: 2px solid #778da9;
 }
 
-.todo_textbox {width:72%;}
+.todo_textbox {
+    width: 72%;
+}
 
-.notes_search {width: 90%; }
+.notes_search {
+    width: 90%;
+}
 
-::placeholder{
+::placeholder {
     color: #778da9;
     font-weight: normal;
 }
 
-.todo_button, .note_button, .new_folder_button {
+.todo_button,
+.note_button,
+.new_folder_button {
     color: #778da9;
     border-radius: 20px;
     padding: 10px;
@@ -1023,7 +1063,9 @@ input:focus {
     margin-right: 10px;
 }
 
-.todo_button {width: 20%;}
+.todo_button {
+    width: 20%;
+}
 
 .note_button {
     float: right;
@@ -1033,7 +1075,8 @@ input:focus {
 }
 
 
-.todo_button:hover, .note_button:hover {
+.todo_button:hover,
+.note_button:hover {
     color: #f6f5f0;
     background-color: #778da9;
 }
@@ -1073,7 +1116,9 @@ input:focus {
     text-decoration-thickness: 2px;
 }
 
-.delete_icon, .pen_icon, .completed_delete_icon {
+.delete_icon,
+.pen_icon,
+.completed_delete_icon {
     position: relative;
     display: inline-block;
     margin-left: 8px;
@@ -1106,7 +1151,9 @@ input:focus {
     display: inline-block;
 }
 
-.delete, .complete, .update {
+.delete,
+.complete,
+.update {
     text-decoration: none;
     color: inherit;
 }
@@ -1202,14 +1249,14 @@ input:focus {
     margin-top: -110px;
 }
 
-.error_smalltext{
+.error_smalltext {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     text-align: center;
     color: #485b72;
 }
 
-.error_smalltext a{
+.error_smalltext a {
     text-decoration: none;
     border-bottom: 2px solid;
 }

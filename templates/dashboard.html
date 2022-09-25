@@ -5,24 +5,26 @@
 
 {% with messages = get_flashed_messages(with_categories=true, category_filter='user') %}
 {% if messages %}
-    {% for category, message in messages %}
-            <div class="flash_message">
-                <pre>{{ message }}</pre>
-            </div>
-    {% endfor %}
+{% for category, message in messages %}
+<div class="flash_message">
+    <pre>{{ message }}</pre>
+</div>
+{% endfor %}
 {% endif %}
 {% endwith %}
 
 <div class="page">
     <div class="dashboard_left">
         <div class="dashboard_header">
-            <h1 class="welcome">welcome,</h1><h1 class="welcome_name">{{ name }}</h1>
+            <h1 class="welcome">welcome,</h1>
+            <h1 class="welcome_name">{{ name }}</h1>
         </div>
         <div class="favourites">
             <div class="favourites_text">
                 <div class="favourites_heading">
                     <h2 class="dashboard_subheadings">favourited notes</h2>
-                    <a href="{{url_for('notes')}}" class="notes_link">all notes</a><span class="arrow_icon_right"><i class="fa-solid fa-angle-right"></i></span>
+                    <a href="{{url_for('notes')}}" class="notes_link">all notes</a><span class="arrow_icon_right"><i
+                            class="fa-solid fa-angle-right"></i></span>
                     <a href="{{url_for('new_note')}}"><button class="note_button">new note</button></a>
                 </div>
                 <div class="favourites_left">
@@ -64,28 +66,33 @@
 
                 <form method="POST">
                     {% for task in incomplete_tasks %}
-                        <ul class="task">
-                            <span class="tick_icon"><a href="/complete_task/{{ task.id }}" class="complete"><i class="fa-regular fa-circle"></i></a></span>
-                                <div class="truncate">
-                                    <li class="task_name">{{ task.name }}</li>
-                                </div>
-                            <span class="delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></span>
-                            <span class="pen_icon"><a href="/update_task/{{ task.id }}" class="update"><i class="fa-solid fa-pencil"></i></a></span>
-                        </ul>
+                    <ul class="task">
+                        <span class="tick_icon"><a href="/complete_task/{{ task.id }}" class="complete"><i
+                                    class="fa-regular fa-circle"></i></a></span>
+                        <div class="truncate">
+                            <li class="task_name">{{ task.name }}</li>
+                        </div>
+                        <span class="delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i
+                                    class="fa-regular fa-trash-can"></i></a></span>
+                        <span class="pen_icon"><a href="{{url_for('page_unavailable')}}" class="update"><i
+                                    class="fa-solid fa-pencil"></i></a></span>
+                    </ul>
                     {% endfor %}
                     <br>
                 </form>
 
                 <h3 class="subheadings_small">completed tasks</h3>
-                    {% for task in complete_tasks %}
-                        <ul class="task">
-                            <span class="tick_icon"><a href="/redo_complete_task/{{ task.id}}" class="complete"><i class="fa-solid fa-circle-check"></i></a></span>
-                            <div class="truncate">
-                                <li class="completed_task_name">{{ task.name }}</li>
-                            </div>
-                            <span class="completed_delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i class="fa-regular fa-trash-can"></i></a></span>
-                        </ul>
-                    {% endfor %}
+                {% for task in complete_tasks %}
+                <ul class="task">
+                    <span class="tick_icon"><a href="/redo_complete_task/{{ task.id}}" class="complete"><i
+                                class="fa-solid fa-circle-check"></i></a></span>
+                    <div class="truncate">
+                        <li class="completed_task_name">{{ task.name }}</li>
+                    </div>
+                    <span class="completed_delete_icon"><a href="/delete_task/{{ task.id }}" class="delete"><i
+                                class="fa-regular fa-trash-can"></i></a></span>
+                </ul>
+                {% endfor %}
 
             </div>
         </div>
@@ -94,12 +101,14 @@
                 <h2 class="dashboard_subheadings">upcoming deadlines</h2>
                 <a href="{{url_for('deadlines')}}"><button class="note_button">view all</button></a>
                 <h3 class="subheadings_small">due today</h3>
+                <br>
                 {% for item in today_items %}
-                    <li>{{ item.name }}</li>
+                <li class="deadlines_list">{{item.date}} {{ item.name }}</li>
                 {% endfor %}
                 <h3 class="subheadings_small">due later</h3>
+                <br>
                 {% for item in later_items %}
-                    <li>{{ item.name }}</li>
+                <li class="deadlines_list">{{item.date}} <b>{{ item.name }}</b></li>
                 {% endfor %}
             </div>
         </div>

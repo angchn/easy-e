@@ -78,12 +78,20 @@ def signup():
         existing_username = (
             db.session.query(models.User)
             .filter_by(user_name=form.username.data)
-            .first_or_404()
+            .first()
+        )
+        existing_email = (
+            db.session.query(models.User)
+            .filter_by(user_email=form.email.data)
+            .first()
         )
 
-        # If username is already registered, flash message and redirect.
+        # If username or email is already registered, flash message and redirect.
         if existing_username is not None:
             flash("Username already registered.", "user")
+            return render_template("signup.html", form=form)
+        elif existing_email is not None:
+            flash("Email already registered.", "user")
             return render_template("signup.html", form=form)
 
         # If username does not already exist, generate password hash and add new user to database.
@@ -128,15 +136,14 @@ def dashboard():
     # Filters user deadlines based on today date.
     today_items = (
         db.session.query(models.Deadline)
-        .filter(models.Deadline.date == date.today())
+        .filter(models.Deadline.date == date.today()).filter_by(user=current_user.id)
         .all()
     )
     later_items = (
         db.session.query(models.Deadline)
-        .filter(models.Deadline.date > date.today())
+        .filter(models.Deadline.date > date.today()).filter_by(user=current_user.id)
         .all()
     )
-
     return render_template(
         "dashboard.html",
         name=current_user.name,
@@ -180,7 +187,9 @@ def search_note():
         note = (
             db.session.query(models.Notes)
             .filter_by(user=current_user.id)
-            .filter(func.lower(models.Notes.title) == func.lower(search_note))  # Makes user input non-case-sensitive.
+            .filter(
+                func.lower(models.Notes.title) == func.lower(search_note)
+            )  # Makes user input non-case-sensitive.
             .first()
         )
 
@@ -202,7 +211,9 @@ def note(id):
         .filter_by(user=current_user.id, id=id)
         .first_or_404()
     )
-    folders = db.session.query(models.Folders).filter_by(user=current_user.id)  # Gets folders from database.
+    folders = db.session.query(models.Folders).filter_by(
+        user=current_user.id
+    )  # Gets folders from database.
     return render_template(
         "note.html", name=current_user.name, note=note, folders=folders
     )
@@ -211,10 +222,12 @@ def note(id):
 @app.route("/change_folder/<int:note_id>/<int:folder_id>")
 def change_folder(note_id, folder_id):
     """Route for user to change folder of a note."""
-    current_note = db.session.query(models.Notes).filter_by(id=note_id).first_or_404()  # Gets current note from database.
+    current_note = (
+        db.session.query(models.Notes).filter_by(id=note_id).first_or_404()
+    )  # Gets current note from database.
     current_note.folder = folder_id  # Changes folder of current note to new folder.
     db.session.commit()
-    flash("Folder successfully changed!", "note") 
+    flash("Folder successfully changed!", "note")
     return redirect("/note/{}".format(note_id))
 
 
@@ -252,7 +265,9 @@ def edit_note(id):
 @app.route("/delete_note/<int:id>")
 def delete_note(id):
     """Route for user to delete note."""
-    note_delete = db.session.query(models.Notes).filter_by(id=id).first_or_404()  # Gets note from database.
+    note_delete = (
+        db.session.query(models.Notes).filter_by(id=id).first_or_404()
+    )  # Gets note from database.
     db.session.delete(note_delete)
     db.session.commit()
     return redirect(url_for("notes"))
@@ -292,12 +307,16 @@ def new_note():
             title = request.form.get("title")
             folder = request.form.get("folder")
 
-            if folder == "None":  # If user does not assign a folder to the note, add note regardless.
+            if (
+                folder == "None"
+            ):  # If user does not assign a folder to the note, add note regardless.
                 notes = models.Notes(
                     user=current_user.id, title=func.trim(title), content=content
                 )
 
-            elif folder != "None":  # If user assigns a folder to note, get folder and then add note.
+            elif (
+                folder != "None"
+            ):  # If user assigns a folder to note, get folder and then add note.
                 get_folder = (
                     db.session.query(models.Folders).filter_by(name=folder).first()
                 )
@@ -378,17 +397,17 @@ def deadlines():
     """Route renders user's deadlines."""
     overdue_items = (  # Filters deadlines that are overdue.
         db.session.query(models.Deadline)
-        .filter(models.Deadline.date < date.today(), user=current_user.id)
+        .filter(models.Deadline.date < date.today()).filter_by(user=current_user.id)
         .all()
     )
     today_items = (  # Filters deadlines due today.
         db.session.query(models.Deadline)
-        .filter(models.Deadline.date == date.today(), user=current_user.id)
+        .filter(models.Deadline.date == date.today()).filter_by(user=current_user.id)
         .all()
     )
     later_items = (  # Filters deadlines due in the future.
         db.session.query(models.Deadline)
-        .filter(models.Deadline.date > date.today(), user=current_user.id)
+        .filter(models.Deadline.date > date.today()).filter_by(user=current_user.id)
         .all()
     )
     return render_template(
@@ -417,12 +436,6 @@ def new_deadline():
     return render_template("deadline_new.html", name=current_user.name, form=form)
 
 
-@app.route("/past_papers")
-def papers():
-    papers = models.Paper.query.all()
-    return render_template("papers.html", page_title="Past_Papers", papers=papers)
-
-
 @app.route("/past_papers_english")
 def english():
     """Route renders page for all past English papers."""
@@ -437,6 +450,12 @@ def maths():
     """Route renders page for all past Maths papers."""
     mpapers = models.Paper.query.filter_by(subject=2)
     return render_template("maths.html", page_title="Math_Past_Papers", mpapers=mpapers)
+
+
+@app.route("/page_unavailable")
+def page_unavailable():
+    """Route redirects user to empty page, as feature is unavailable due to time constraints."""
+    return render_template("page_unavailable.html")
 
 
 @app.errorhandler(404)

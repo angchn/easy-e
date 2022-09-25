@@ -6,16 +6,16 @@
     <a id="home_button" href="{{url_for('home')}}">easy.e</a>
     <a class="dashboard_button" href="{{url_for('dashboard')}}">dashboard</a>
     <a class="nav_button" href="{{url_for('login')}}">login</a>
-    <a class="nav_button">contact</a>
-    <a class="nav_button">about</a>
+    <a class="nav_button" href="{{url_for('page_unavailable')}}">contact</a>
+    <a class="nav_button" href="{{url_for('page_unavailable')}}">about</a>
     <div id="paper_dropdown">
-        <button class="dropdown_button" href="{{url_for('papers')}}">past papers<i class="arrow down"></i></button>
+        <button class="dropdown_button">past papers<i class="arrow down"></i></button>
         <div id="dropdown_content">
             <a href="{{url_for('english')}}">english</a>
             <a href="{{url_for('maths')}}">maths</a>
-            <a>physics</a>
-            <a>chemistry</a>
-            <a>biology</a>
+            <a href="{{url_for('page_unavailable')}}">physics</a>
+            <a href="{{url_for('page_unavailable')}}">chemistry</a>
+            <a href="{{url_for('page_unavailable')}}">biology</a>
         </div>
     </div>
 </nav>

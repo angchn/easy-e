@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}{% endblock %}
+{% block title %}home{% endblock %}
 
 {% block content %}
 
@@ -38,9 +38,9 @@
         <div class="home_papers">
             <a href="{{url_for('english')}}"><button type=button class="home_subjects">english</button></a>
             <a href="{{url_for('maths')}}"><button type=button class="home_subjects">maths</button></a>
-            <a><button type=button class="home_subjects">physics</button></a>
-            <a><button type=button class="home_subjects">chemistry</button></a>
-            <a><button type=button class="home_subjects">biology</button></a>
+            <a href="{{url_for('page_unavailable')}}"><button type=button class="home_subjects">physics</button></a>
+            <a href="{{url_for('page_unavailable')}}"><button type=button class="home_subjects">chemistry</button></a>
+            <a href="{{url_for('page_unavailable')}}"><button type=button class="home_subjects">biology</button></a>
             <p class="home_smalltext">* all resources belong to NZQA.</p>
         </div>
     </div>
