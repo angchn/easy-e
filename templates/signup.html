@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Outfit&display=swap" rel="stylesheet">
     <title>sign up | easy.e</title>
-</head> 
+</head>
 
 <nav class="navbar">
     <a id="home_button" href="{{url_for('home')}}">easy.e</a>
@@ -12,18 +12,19 @@
 
 {% with messages = get_flashed_messages(with_categories=true, category_filter='user') %}
 {% if messages %}
-    {% for category, message in messages %}
-            <div class="flash_message">
-                <pre><strong>Error: </strong>{{ message }}</pre>
-            </div>
-    {% endfor %}
+{% for category, message in messages %}
+<div class="flash_message">
+    <pre><strong>Error: </strong>{{ message }}</pre>
+</div>
+{% endfor %}
 {% endif %}
 {% endwith %}
 
 <div class="login_block">
     <form class="login" method="POST" action="/signup" autocomplete="off">
         <div class="login_header">
-            <a class="login_unselected" href="{{url_for('login')}}">login</a><a class="login_selected" href="{{url_for('signup')}}">signup</a>
+            <a class="login_unselected" href="{{url_for('login')}}">login</a><a class="login_selected"
+                href="{{url_for('signup')}}">signup</a>
         </div>
         {{ form.csrf_token }}
         <p class="login_labels">display name</p>
